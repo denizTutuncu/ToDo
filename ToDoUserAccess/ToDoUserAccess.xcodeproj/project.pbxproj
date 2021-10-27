@@ -79,10 +79,19 @@
 		2E5FABA52728DA620018E81D /* ToDoUserAccessTests */ = {
 			isa = PBXGroup;
 			children = (
-				2E5FABA62728DA620018E81D /* ToDoUserAccessTests.swift */,
+				2E5FABB32728DE6D0018E81D /* Helpers */,
+				2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */,
 				2E5FABA82728DA620018E81D /* Info.plist */,
 			);
 			path = ToDoUserAccessTests;
+			sourceTree = "<group>";
+		};
+		2E5FABB32728DE6D0018E81D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
