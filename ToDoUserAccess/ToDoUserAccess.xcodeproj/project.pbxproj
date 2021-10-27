@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E5FABA22728DA620018E81D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
-		2E5FABA72728DA620018E81D /* ToDoUserAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* ToDoUserAccessTests.swift */; };
+		2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */; };
+		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,8 +26,9 @@
 		2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoUserAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5FAB9C2728DA610018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABA12728DA620018E81D /* ToDoUserAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E5FABA62728DA620018E81D /* ToDoUserAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessTests.swift; sourceTree = "<group>"; };
+		2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		2E5FABA82728DA620018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +199,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E5FABA72728DA620018E81D /* ToDoUserAccessTests.swift in Sources */,
+				2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */,
+				2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

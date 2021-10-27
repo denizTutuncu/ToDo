@@ -7,4 +7,4 @@
 
 import XCTest
 
-class ToDoUserAccessTests: XCTestCase {}
+class SignUpFromRemoteUseCaseTests: XCTestCase {}
