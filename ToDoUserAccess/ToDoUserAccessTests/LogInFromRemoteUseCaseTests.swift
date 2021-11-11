@@ -7,6 +7,8 @@
 
 import XCTest
 
+class RemoteLoginService {}
+
 class LogInFromRemoteUseCaseTests: XCTestCase {
     
 }
