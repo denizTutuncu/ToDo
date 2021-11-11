@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */; };
 		2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19884227293A1400D88660 /* SharedTestHelpers.swift */; };
+		2E487EB0273C958900CCBDE5 /* RemoteLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EAF273C958900CCBDE5 /* RemoteLoginService.swift */; };
+		2E487EB2273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */; };
 		2E5FABA22728DA620018E81D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
 		2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */; };
 		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2E19884227293A1400D88660 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		2E487EAF273C958900CCBDE5 /* RemoteLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginService.swift; sourceTree = "<group>"; };
+		2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoUserAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5FAB9C2728DA610018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABA12728DA620018E81D /* ToDoUserAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,7 @@
 		2E487EAD273C953800CCBDE5 /* Log In API */ = {
 			isa = PBXGroup;
 			children = (
+				2E487EAF273C958900CCBDE5 /* RemoteLoginService.swift */,
 			);
 			path = "Log In API";
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				2E5FABB32728DE6D0018E81D /* Helpers */,
 				2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */,
 				2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */,
+				2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */,
 			);
 			path = ToDoUserAccessTests;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				2E5FABBD2728EEED0018E81D /* RemoteSignupService.swift in Sources */,
 				2E5FABBF2728EF5D0018E81D /* HTTPClient.swift in Sources */,
 				2E5FABC32728F1630018E81D /* RemoteSignUpResponseMapper.swift in Sources */,
+				2E487EB0273C958900CCBDE5 /* RemoteLoginService.swift in Sources */,
 				2E5FABB72728EDF40018E81D /* AuthenticationResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +374,7 @@
 				2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */,
 				2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */,
 				2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */,
+				2E487EB2273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift in Sources */,
 				2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
