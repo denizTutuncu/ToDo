@@ -99,6 +99,15 @@
 			path = "Sign Up API";
 			sourceTree = "<group>";
 		};
+		2E487EAC273C950200CCBDE5 /* HTTP Client API */ = {
+			isa = PBXGroup;
+			children = (
+				2E5FABBE2728EF5D0018E81D /* HTTPClient.swift */,
+				2E5FABC42728F6630018E81D /* URLSessionHTTPClient.swift */,
+			);
+			path = "HTTP Client API";
+			sourceTree = "<group>";
+		};
 		2E5FAB8E2728DA610018E81D = {
 			isa = PBXGroup;
 			children = (
@@ -162,10 +171,9 @@
 		2E5FABBB2728EEC60018E81D /* Authentication API */ = {
 			isa = PBXGroup;
 			children = (
+				2E487EAC273C950200CCBDE5 /* HTTP Client API */,
 				2E487EAB273C94BC00CCBDE5 /* Sign Up API */,
 				2E8F39B8272BA0DC00706E1D /* Models */,
-				2E5FABBE2728EF5D0018E81D /* HTTPClient.swift */,
-				2E5FABC42728F6630018E81D /* URLSessionHTTPClient.swift */,
 			);
 			path = "Authentication API";
 			sourceTree = "<group>";
