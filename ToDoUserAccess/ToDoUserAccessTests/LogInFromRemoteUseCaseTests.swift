@@ -8,70 +8,6 @@
 import XCTest
 import ToDoUserAccess
 
-class RemoteLogInService: AuthenticationService {
-    private let request: URLRequest
-    private let client: HTTPClient
-    
-    public enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-        case badResponse
-    }
-    
-    public typealias Result = AuthenticationService.Result
-    
-    public init(request: URLRequest, client: HTTPClient) {
-        self.request = request
-        self.client = client
-    }
-    
-    func auth(completion: @escaping (Result) -> Void) {
-        client.send(request) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case let .success((data, response)):
-                completion(RemoteLogInService.map(data, from: response))
-            case .failure:
-                completion(.failure(Error.connectivity))
-            }
-        }
-    }
-    
-    private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
-        do {
-            let signUpResponseData = try RemoteLogInResponseMapper
-                .map(data, from: response)
-            return .success(AuthenticationResponse(token: signUpResponseData.token))
-        } catch {
-            return .failure(error)
-        }
-    }
-    
-    
-}
-
-class RemoteLogInResponseMapper {
-    private struct Root: Decodable {
-        let data: RemoteLogInResponse
-    }
-    
-    private static var OK_Response: Int { return 201 }
-    
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteLogInResponse {
-        guard response.statusCode == OK_Response else {
-            throw RemoteLogInService.Error.badResponse
-        }
-        guard let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw RemoteLogInService.Error.invalidData
-        }
-        return root.data
-    }
-}
-
-struct RemoteLogInResponse: Decodable {
-    let token: String
-}
-
 class LogInFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
@@ -79,7 +15,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         XCTAssertTrue(client.requests.isEmpty)
     }
     
-    func test_signUp_requestsDataFromURL() {
+    func test_logIn_requestsDataFromURL() {
         let request = testRequest()
         
         //system under control
@@ -90,7 +26,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request])
     }
     
-    func test_signUpTwice_requestsDataFromURLTwice() {
+    func test_logInTwice_requestsDataFromURLTwice() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -100,7 +36,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request, request])
     }
     
-    func test_signUp_deliversErrorOnClientError() {
+    func test_logIn_deliversErrorOnClientError() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -111,7 +47,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    func test_signUp_deliversErrorOnNon201HTTPResponse() {
+    func test_logIn_deliversErrorOnNon201HTTPResponse() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -125,7 +61,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_signUp_deliversErrorOn201HTTPResponseWithInvalidJSON() {
+    func test_logIn_deliversErrorOn201HTTPResponseWithInvalidJSON() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -136,7 +72,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_signUp_deliversResponseDataOn201HTTPResponseWithValidJSON() {
+    func test_logIn_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -149,7 +85,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    func test_signUp_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_logIn_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let requestable = testRequest()
         var sut: RemoteSignupService? = RemoteSignupService(request: requestable, client: client)

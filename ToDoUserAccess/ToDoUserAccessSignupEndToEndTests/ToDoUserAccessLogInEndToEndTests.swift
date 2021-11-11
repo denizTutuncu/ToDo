@@ -1,20 +1,20 @@
 //
-//  ToDoUserAccessSignupEndToEndTests.swift
+//  ToDoUserAccessLogInEndToEndTests.swift
 //  ToDoUserAccessSignupEndToEndTests
 //
-//  Created by Deniz Tutuncu on 10/28/21.
+//  Created by Deniz Tutuncu on 11/10/21.
 //
 
 import XCTest
 import ToDoUserAccess
 
-class ToDoUserAccessSignupEndToEndTests: XCTestCase {
+class ToDoUserAccessLogInEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
         switch getResult() {
         case let .success(signupResponse):
             XCTAssertNotNil(signupResponse)
-            XCTAssertNotNil(signupResponse.email)
+            XCTAssertNil(signupResponse.email)
             XCTAssertNotNil(signupResponse.token)
         case let .failure(error):
             print("ERROR is \(error)")
@@ -28,7 +28,7 @@ class ToDoUserAccessSignupEndToEndTests: XCTestCase {
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
         let requestable = testRequest()
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let signupService = RemoteSignupService(request: requestable, client: client)
+        let signupService = RemoteLogInService(request: requestable, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(signupService, file: file, line: line)
@@ -45,25 +45,14 @@ class ToDoUserAccessSignupEndToEndTests: XCTestCase {
         return receivedResult
     }
     
-    //MARK: - Helpers
     private func testRequest() -> URLRequest {
-        let signUpURL = URL(string: "https://ancient-plateau-22374.herokuapp.com/user")!
-        var urlRequest = URLRequest(url: signUpURL)
+        let logInURL = URL(string: "https://ancient-plateau-22374.herokuapp.com/session")!
+        var urlRequest = URLRequest(url: logInURL)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = makeRequestData()
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
-    
-    //    private struct TestRequest: Requestable {
-    //        var baseURL: URL { URL(string: "https://ancient-plateau-22374.herokuapp.com")! }
-    //        var path: String { "/user"}
-    //        var httpMethod: HTTPMethod { .POST }
-    //        var httpBody: Data? = makeRequestData()
-    //        var headerField: [String : String] {
-    //            ["Content-Type":"application/json"]
-    //        }
-    //    }
 }
 
 private func makeRequestData() -> Data {
