@@ -26,9 +26,9 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
     
     //MARK:- Helpers
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
-        let requestable = testRequest()
+        let request = testRequest()
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let loginService = RemoteLogInService(request: requestable, client: client)
+        let loginService = RemoteLogInService(request: request, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(loginService, file: file, line: line)
@@ -49,13 +49,13 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
         let logInURL = URL(string: "https://ancient-plateau-22374.herokuapp.com/session")!
         var urlRequest = URLRequest(url: logInURL)
         urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = makeRequestData()
+        urlRequest.httpBody = makeRequestHttpBodyData()
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
 }
 
-private func makeRequestData() -> Data {
+private func makeRequestHttpBodyData() -> Data {
     let json = [
         "email": "email@example.com",
         "password": "my_password",
