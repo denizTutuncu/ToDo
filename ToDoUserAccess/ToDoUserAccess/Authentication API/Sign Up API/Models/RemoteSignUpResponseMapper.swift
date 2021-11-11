@@ -16,10 +16,10 @@ final class RemoteSignUpResponseMapper {
     
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteSignUpResponse {
         guard response.statusCode == OK_Response else {
-            throw RemoteSignupService.Error.badResponse
+            throw SignupAuthenticationService.Error.badResponse
         }
         guard let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw RemoteSignupService.Error.invalidData
+            throw SignupAuthenticationService.Error.invalidData
         }
         return root.data
     }

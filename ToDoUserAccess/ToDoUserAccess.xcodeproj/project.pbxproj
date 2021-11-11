@@ -10,7 +10,7 @@
 		2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */; };
 		2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19884227293A1400D88660 /* SharedTestHelpers.swift */; };
 		2E487EB2273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */; };
-		2E487EB4273C9ABE00CCBDE5 /* RemoteLogInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB3273C9ABE00CCBDE5 /* RemoteLogInService.swift */; };
+		2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */; };
 		2E487EB7273C9B1200CCBDE5 /* RemoteLogInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB6273C9B1200CCBDE5 /* RemoteLogInResponse.swift */; };
 		2E487EB9273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB8273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift */; };
 		2E487EBB273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */; };
@@ -19,7 +19,7 @@
 		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
 		2E5FABB72728EDF40018E81D /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB62728EDF40018E81D /* AuthenticationResponse.swift */; };
 		2E5FABB92728EE550018E81D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB82728EE550018E81D /* AuthenticationService.swift */; };
-		2E5FABBD2728EEED0018E81D /* RemoteSignupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABBC2728EEED0018E81D /* RemoteSignupService.swift */; };
+		2E5FABBD2728EEED0018E81D /* SignupAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABBC2728EEED0018E81D /* SignupAuthenticationService.swift */; };
 		2E5FABBF2728EF5D0018E81D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABBE2728EF5D0018E81D /* HTTPClient.swift */; };
 		2E5FABC12728F13E0018E81D /* RemoteSignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABC02728F13E0018E81D /* RemoteSignUpResponse.swift */; };
 		2E5FABC32728F1630018E81D /* RemoteSignUpResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABC22728F1630018E81D /* RemoteSignUpResponseMapper.swift */; };
@@ -51,7 +51,7 @@
 		2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2E19884227293A1400D88660 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
-		2E487EB3273C9ABE00CCBDE5 /* RemoteLogInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogInService.swift; sourceTree = "<group>"; };
+		2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthenticationService.swift; sourceTree = "<group>"; };
 		2E487EB6273C9B1200CCBDE5 /* RemoteLogInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogInResponse.swift; sourceTree = "<group>"; };
 		2E487EB8273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogInResponseMapper.swift; sourceTree = "<group>"; };
 		2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessLogInEndToEndTests.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2E5FABB62728EDF40018E81D /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		2E5FABB82728EE550018E81D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		2E5FABBC2728EEED0018E81D /* RemoteSignupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSignupService.swift; sourceTree = "<group>"; };
+		2E5FABBC2728EEED0018E81D /* SignupAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAuthenticationService.swift; sourceTree = "<group>"; };
 		2E5FABBE2728EF5D0018E81D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		2E5FABC02728F13E0018E81D /* RemoteSignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSignUpResponse.swift; sourceTree = "<group>"; };
 		2E5FABC22728F1630018E81D /* RemoteSignUpResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSignUpResponseMapper.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				2E8F39B8272BA0DC00706E1D /* Models */,
-				2E5FABBC2728EEED0018E81D /* RemoteSignupService.swift */,
+				2E5FABBC2728EEED0018E81D /* SignupAuthenticationService.swift */,
 			);
 			path = "Sign Up API";
 			sourceTree = "<group>";
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				2E487EB5273C9B0000CCBDE5 /* Models */,
-				2E487EB3273C9ABE00CCBDE5 /* RemoteLogInService.swift */,
+				2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */,
 			);
 			path = "Log In API";
 			sourceTree = "<group>";
@@ -143,6 +143,13 @@
 				2E487EB8273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2E487EBC273CA14400CCBDE5 /* Authenticated Routes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Authenticated Routes";
 			sourceTree = "<group>";
 		};
 		2E5FAB8E2728DA610018E81D = {
@@ -209,6 +216,7 @@
 		2E5FABBB2728EEC60018E81D /* Authentication API */ = {
 			isa = PBXGroup;
 			children = (
+				2E487EBC273CA14400CCBDE5 /* Authenticated Routes */,
 				2E487EAC273C950200CCBDE5 /* HTTP Client API */,
 				2E487EAD273C953800CCBDE5 /* Log In API */,
 				2E487EAB273C94BC00CCBDE5 /* Sign Up API */,
@@ -374,11 +382,11 @@
 			files = (
 				2E5FABC52728F6630018E81D /* URLSessionHTTPClient.swift in Sources */,
 				2E8F39B2272B4C4800706E1D /* Requestable.swift in Sources */,
-				2E487EB4273C9ABE00CCBDE5 /* RemoteLogInService.swift in Sources */,
+				2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */,
 				2E5FABC12728F13E0018E81D /* RemoteSignUpResponse.swift in Sources */,
 				2E487EB9273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift in Sources */,
 				2E5FABB92728EE550018E81D /* AuthenticationService.swift in Sources */,
-				2E5FABBD2728EEED0018E81D /* RemoteSignupService.swift in Sources */,
+				2E5FABBD2728EEED0018E81D /* SignupAuthenticationService.swift in Sources */,
 				2E487EB7273C9B1200CCBDE5 /* RemoteLogInResponse.swift in Sources */,
 				2E5FABBF2728EF5D0018E81D /* HTTPClient.swift in Sources */,
 				2E5FABC32728F1630018E81D /* RemoteSignUpResponseMapper.swift in Sources */,

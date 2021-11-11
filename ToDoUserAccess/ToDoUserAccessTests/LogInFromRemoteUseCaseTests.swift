@@ -88,10 +88,10 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
     func test_logIn_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let requestable = testRequest()
-        var sut: RemoteSignupService? = RemoteSignupService(request: requestable, client: client)
+        var sut: SignupAuthenticationService? = SignupAuthenticationService(request: requestable, client: client)
         
         
-        var capturedResults = [RemoteSignupService.Result]()
+        var capturedResults = [SignupAuthenticationService.Result]()
         sut?.auth() { capturedResults.append($0) }
         
         sut = nil
@@ -102,14 +102,14 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
     }
     
     //MARK:- helpers
-    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteLogInService, client: HTTPClientSpy) {
+    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: LoginAuthenticationService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLogInService(request: request, client: client)
+        let sut = LoginAuthenticationService(request: request, client: client)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
     }
     
-    private func failure(_ error: RemoteLogInService.Error) -> RemoteLogInService.Result {
+    private func failure(_ error: LoginAuthenticationService.Error) -> LoginAuthenticationService.Result {
         return .failure(error)
     }
     
@@ -127,14 +127,14 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteLogInService, toCompleteWith expectedResult: RemoteLogInService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: LoginAuthenticationService, toCompleteWith expectedResult: LoginAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
         sut.auth() { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedResponse), .success(expectedResponse)):
                 XCTAssertEqual(receivedResponse, expectedResponse, file: file, line: line)
-            case let (.failure(receivedError as RemoteLogInService.Error), .failure(expectedError as RemoteLogInService.Error)):
+            case let (.failure(receivedError as LoginAuthenticationService.Error), .failure(expectedError as LoginAuthenticationService.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)

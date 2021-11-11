@@ -88,10 +88,10 @@ class SignUpFromRemoteUseCaseTests: XCTestCase {
     func test_signUp_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let requestable = testRequest()
-        var sut: RemoteSignupService? = RemoteSignupService(request: requestable, client: client)
+        var sut: SignupAuthenticationService? = SignupAuthenticationService(request: requestable, client: client)
         
         
-        var capturedResults = [RemoteSignupService.Result]()
+        var capturedResults = [SignupAuthenticationService.Result]()
         sut?.auth() { capturedResults.append($0) }
         
         sut = nil
@@ -103,14 +103,14 @@ class SignUpFromRemoteUseCaseTests: XCTestCase {
     
     
     //MARK:- helpers
-    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteSignupService, client: HTTPClientSpy) {
+    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: SignupAuthenticationService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteSignupService(request: request, client: client)
+        let sut = SignupAuthenticationService(request: request, client: client)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
     }
     
-    private func failure(_ error: RemoteSignupService.Error) -> RemoteSignupService.Result {
+    private func failure(_ error: SignupAuthenticationService.Error) -> SignupAuthenticationService.Result {
         return .failure(error)
     }
     
@@ -129,14 +129,14 @@ class SignUpFromRemoteUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteSignupService, toCompleteWith expectedResult: RemoteSignupService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: SignupAuthenticationService, toCompleteWith expectedResult: SignupAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
         sut.auth() { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedResponse), .success(expectedResponse)):
                 XCTAssertEqual(receivedResponse, expectedResponse, file: file, line: line)
-            case let (.failure(receivedError as RemoteSignupService.Error), .failure(expectedError as RemoteSignupService.Error)):
+            case let (.failure(receivedError as SignupAuthenticationService.Error), .failure(expectedError as SignupAuthenticationService.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)

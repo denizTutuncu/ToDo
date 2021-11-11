@@ -16,10 +16,10 @@ class RemoteLogInResponseMapper {
     
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteLogInResponse {
         guard response.statusCode == OK_Response else {
-            throw RemoteLogInService.Error.badResponse
+            throw LoginAuthenticationService.Error.badResponse
         }
         guard let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw RemoteLogInService.Error.invalidData
+            throw LoginAuthenticationService.Error.invalidData
         }
         return root.data
     }

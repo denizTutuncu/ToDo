@@ -28,7 +28,7 @@ class ToDoUserAccessSignupEndToEndTests: XCTestCase {
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
         let request = testRequest()
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let signupService = RemoteSignupService(request: request, client: client)
+        let signupService = SignupAuthenticationService(request: request, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(signupService, file: file, line: line)

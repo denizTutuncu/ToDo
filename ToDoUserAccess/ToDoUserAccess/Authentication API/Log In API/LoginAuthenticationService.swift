@@ -1,13 +1,13 @@
 //
-//  RemoteUserSignUpSessioner.swift
+//  RemoteLogInService.swift
 //  ToDoUserAccess
 //
-//  Created by Deniz Tutuncu on 10/26/21.
+//  Created by Deniz Tutuncu on 11/10/21.
 //
 
 import Foundation
 
-public final class RemoteSignupService: AuthenticationService {
+public final class LoginAuthenticationService: AuthenticationService {
     private let request: URLRequest
     private let client: HTTPClient
     
@@ -30,7 +30,7 @@ public final class RemoteSignupService: AuthenticationService {
             guard self != nil else { return }
             switch result {
             case let .success((data, response)):
-                completion(RemoteSignupService.map(data, from: response))
+                completion(LoginAuthenticationService.map(data, from: response))
             case .failure:
                 completion(.failure(Error.connectivity))
             }
@@ -39,11 +39,12 @@ public final class RemoteSignupService: AuthenticationService {
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
         do {
-            let signUpResponseData = try RemoteSignUpResponseMapper
+            let logInResponseData = try RemoteLogInResponseMapper
                 .map(data, from: response)
-            return .success(AuthenticationResponse(email: signUpResponseData.email, token: signUpResponseData.token))
+            return .success(AuthenticationResponse(token: logInResponseData.token))
         } catch {
             return .failure(error)
         }
     }
+    
 }

@@ -28,7 +28,7 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
         let request = testRequest()
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let loginService = RemoteLogInService(request: request, client: client)
+        let loginService = LoginAuthenticationService(request: request, client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(loginService, file: file, line: line)
