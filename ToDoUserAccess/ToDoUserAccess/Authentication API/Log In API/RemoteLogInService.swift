@@ -25,6 +25,7 @@ public final class RemoteLogInService: AuthenticationService {
     }
     
     public func auth(completion: @escaping (Result) -> Void) {
+        
         client.send(request) { [weak self] result in
             guard self != nil else { return }
             switch result {

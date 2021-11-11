@@ -209,8 +209,8 @@
 		2E5FABBB2728EEC60018E81D /* Authentication API */ = {
 			isa = PBXGroup;
 			children = (
-				2E487EAD273C953800CCBDE5 /* Log In API */,
 				2E487EAC273C950200CCBDE5 /* HTTP Client API */,
+				2E487EAD273C953800CCBDE5 /* Log In API */,
 				2E487EAB273C94BC00CCBDE5 /* Sign Up API */,
 			);
 			path = "Authentication API";
