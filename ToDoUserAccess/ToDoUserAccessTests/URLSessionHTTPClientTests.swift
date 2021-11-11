@@ -20,7 +20,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         URLProtocolStub.stopInterceptingRequests()
     }
     
-    func test_postFromURL_performsPOSTRequestWithURL() {
+    func test_postFromURL_performsPOSTRequestWithURLRequest() {
         let testRequest = testRequest()
         
         let exp = expectation(description: "Wait for test request")
