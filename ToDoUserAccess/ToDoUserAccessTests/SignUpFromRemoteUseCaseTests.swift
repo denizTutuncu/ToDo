@@ -174,8 +174,6 @@ class SignUpFromRemoteUseCaseTests: XCTestCase {
     }
     
     //MARK: - Helpers
-   
-    
     private func testRequest() -> URLRequest {
         var urlRequest = URLRequest(url: anyURL())
         urlRequest.httpMethod = "POST"
