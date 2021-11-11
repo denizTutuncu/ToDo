@@ -9,8 +9,8 @@ import Foundation
 
 public struct AuthenticationResponse: Equatable {
     public let email: String?
-    public let token: String
-    public init(email: String? = nil, token: String) {
+    public let token: String?
+    public init(email: String? = nil, token: String? = nil) {
         self.email = email
         self.token = token
     }

@@ -14,6 +14,11 @@
 		2E487EB7273C9B1200CCBDE5 /* RemoteLogInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB6273C9B1200CCBDE5 /* RemoteLogInResponse.swift */; };
 		2E487EB9273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB8273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift */; };
 		2E487EBB273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */; };
+		2E487EBE273CA43B00CCBDE5 /* UpdateAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */; };
+		2E487EC1273CA60500CCBDE5 /* UpdatedAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC0273CA60500CCBDE5 /* UpdatedAuthResponse.swift */; };
+		2E487EC3273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC2273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift */; };
+		2E487EC6273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */; };
+		2E487EC8273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */; };
 		2E5FABA22728DA620018E81D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
 		2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */; };
 		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -55,6 +60,11 @@
 		2E487EB6273C9B1200CCBDE5 /* RemoteLogInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogInResponse.swift; sourceTree = "<group>"; };
 		2E487EB8273C9B3200CCBDE5 /* RemoteLogInResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogInResponseMapper.swift; sourceTree = "<group>"; };
 		2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessLogInEndToEndTests.swift; sourceTree = "<group>"; };
+		2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthenticationService.swift; sourceTree = "<group>"; };
+		2E487EC0273CA60500CCBDE5 /* UpdatedAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAuthResponse.swift; sourceTree = "<group>"; };
+		2E487EC2273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAuthResponseMapper.swift; sourceTree = "<group>"; };
+		2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthenticationUseCaseTests.swift; sourceTree = "<group>"; };
+		2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessUpdateAuthEndToEndTests.swift; sourceTree = "<group>"; };
 		2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoUserAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5FAB9C2728DA610018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABA12728DA620018E81D /* ToDoUserAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,8 +158,27 @@
 		2E487EBC273CA14400CCBDE5 /* Authenticated Routes */ = {
 			isa = PBXGroup;
 			children = (
+				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
 			);
 			path = "Authenticated Routes";
+			sourceTree = "<group>";
+		};
+		2E487EBF273CA49300CCBDE5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E487EC0273CA60500CCBDE5 /* UpdatedAuthResponse.swift */,
+				2E487EC2273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */ = {
+			isa = PBXGroup;
+			children = (
+				2E487EBF273CA49300CCBDE5 /* Models */,
+				2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */,
+			);
+			path = "Update Authentication Service API";
 			sourceTree = "<group>";
 		};
 		2E5FAB8E2728DA610018E81D = {
@@ -189,6 +218,7 @@
 				2E5FABB32728DE6D0018E81D /* Helpers */,
 				2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */,
 				2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */,
+				2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */,
 				2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = ToDoUserAccessTests;
@@ -216,8 +246,8 @@
 		2E5FABBB2728EEC60018E81D /* Authentication API */ = {
 			isa = PBXGroup;
 			children = (
-				2E487EBC273CA14400CCBDE5 /* Authenticated Routes */,
 				2E487EAC273C950200CCBDE5 /* HTTP Client API */,
+				2E487EBC273CA14400CCBDE5 /* Authenticated Routes */,
 				2E487EAD273C953800CCBDE5 /* Log In API */,
 				2E487EAB273C94BC00CCBDE5 /* Sign Up API */,
 			);
@@ -239,6 +269,7 @@
 				2E8F39C2272BBDCA00706E1D /* Info.plist */,
 				2E8F39C0272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift */,
 				2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */,
+				2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */,
 			);
 			path = ToDoUserAccessSignupEndToEndTests;
 			sourceTree = "<group>";
@@ -380,7 +411,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E487EBE273CA43B00CCBDE5 /* UpdateAuthenticationService.swift in Sources */,
+				2E487EC1273CA60500CCBDE5 /* UpdatedAuthResponse.swift in Sources */,
 				2E5FABC52728F6630018E81D /* URLSessionHTTPClient.swift in Sources */,
+				2E487EC3273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift in Sources */,
 				2E8F39B2272B4C4800706E1D /* Requestable.swift in Sources */,
 				2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */,
 				2E5FABC12728F13E0018E81D /* RemoteSignUpResponse.swift in Sources */,
@@ -398,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E487EC6273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift in Sources */,
 				2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */,
 				2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */,
 				2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */,
@@ -412,6 +447,7 @@
 			files = (
 				2E8F39C1272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift in Sources */,
 				2E8F39C9272BBF9300706E1D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2E487EC8273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift in Sources */,
 				2E487EBB273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
