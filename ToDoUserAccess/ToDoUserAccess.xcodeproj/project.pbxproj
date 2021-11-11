@@ -158,6 +158,8 @@
 		2E487EBC273CA14400CCBDE5 /* Authenticated Routes */ = {
 			isa = PBXGroup;
 			children = (
+				2E487ECA273CABAA00CCBDE5 /* Delete Session API */,
+				2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */,
 				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
 			);
 			path = "Authenticated Routes";
@@ -179,6 +181,20 @@
 				2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */,
 			);
 			path = "Update Authentication Service API";
+			sourceTree = "<group>";
+		};
+		2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Delete Authentication Service API";
+			sourceTree = "<group>";
+		};
+		2E487ECA273CABAA00CCBDE5 /* Delete Session API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Delete Session API";
 			sourceTree = "<group>";
 		};
 		2E5FAB8E2728DA610018E81D = {

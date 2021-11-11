@@ -24,7 +24,7 @@ public final class SignupAuthenticationService: AuthenticationService {
         self.client = client
     }
     
-    public func auth(completion: @escaping (Result) -> Void) {
+    public func perform(completion: @escaping (Result) -> Void) {
         
         client.send(request) { [weak self] result in
             guard self != nil else { return }

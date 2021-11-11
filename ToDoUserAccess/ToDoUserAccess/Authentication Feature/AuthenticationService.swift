@@ -9,5 +9,5 @@ import Foundation
 
 public protocol AuthenticationService {
     typealias Result = Swift.Result<AuthenticationResponse, Error>
-    func auth(completion: @escaping (Result) -> Void)
+    func perform(completion: @escaping (Result) -> Void)
 }

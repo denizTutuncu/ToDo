@@ -21,7 +21,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         //system under control
         let (sut, client) = makeSUT(request: request)
         //system under control does something
-        sut.auth { _ in }
+        sut.perform { _ in }
         //Then we check what we want
         XCTAssertEqual(client.requests, [request])
     }
@@ -30,8 +30,8 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
-        sut.auth { _ in }
-        sut.auth { _ in }
+        sut.perform { _ in }
+        sut.perform { _ in }
         
         XCTAssertEqual(client.requests, [request, request])
     }
@@ -92,7 +92,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         
         
         var capturedResults = [SignupAuthenticationService.Result]()
-        sut?.auth() { capturedResults.append($0) }
+        sut?.perform() { capturedResults.append($0) }
         
         sut = nil
         let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
@@ -130,7 +130,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
     private func expect(_ sut: LoginAuthenticationService, toCompleteWith expectedResult: LoginAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         
-        sut.auth() { receivedResult in
+        sut.perform() { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedResponse), .success(expectedResponse)):
                 XCTAssertEqual(receivedResponse, expectedResponse, file: file, line: line)

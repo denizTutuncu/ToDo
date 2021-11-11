@@ -37,7 +37,7 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
         let exp = expectation(description: "Wait For Completion")
         
         var receivedResult: AuthenticationService.Result?
-        updateAuthService.auth { result in
+        updateAuthService.perform { result in
             receivedResult = result
             exp.fulfill()
         }
