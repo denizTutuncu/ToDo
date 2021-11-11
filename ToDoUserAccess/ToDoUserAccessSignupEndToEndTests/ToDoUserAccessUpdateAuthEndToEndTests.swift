@@ -10,7 +10,7 @@ import ToDoUserAccess
 
 class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
+    func test_endToEndTestServerUpdateAuthResult_matchesFixedTestAccountData() {
         switch getResult() {
         case let .success(updatedAuthResponse):
             XCTAssertNotNil(updatedAuthResponse)

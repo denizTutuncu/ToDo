@@ -10,7 +10,7 @@ import ToDoUserAccess
 
 class ToDoUserAccessSignupEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData() {
+    func test_endToEndTestServerPOSTSignUpResult_matchesFixedTestAccountData() {
         switch getResult() {
         case let .success(signupResponse):
             XCTAssertNotNil(signupResponse)
