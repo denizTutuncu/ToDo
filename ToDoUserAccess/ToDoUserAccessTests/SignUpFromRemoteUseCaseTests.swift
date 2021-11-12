@@ -149,30 +149,6 @@ class SignUpFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private class HTTPClientSpy: HTTPClient {
-        
-        private var messages = [(request: URLRequest, completion: (HTTPClient.Result) -> Void)]()
-        
-        var requests: [URLRequest] {
-            return messages.map { $0.request }
-        }
-        
-        func send(_ request: URLRequest, completion: @escaping (HTTPClient.Result) -> Void) {
-            messages.append((request, completion))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requests[index].url!, statusCode: code,
-                                           httpVersion: nil,
-                                           headerFields: nil)!
-            messages[index].completion(.success((data, response)))
-        }
-    }
-    
     //MARK: - Helpers
     private func testRequest() -> URLRequest {
         var urlRequest = URLRequest(url: anyURL())

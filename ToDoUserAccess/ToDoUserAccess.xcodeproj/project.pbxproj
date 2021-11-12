@@ -20,6 +20,7 @@
 		2E487EC6273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */; };
 		2E487EC8273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */; };
 		2E5D6C62273F30E600759017 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C61273F30E600759017 /* URLProtocolStub.swift */; };
+		2E5D6C64273F320200759017 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C63273F320200759017 /* HTTPClientSpy.swift */; };
 		2E5FABA22728DA620018E81D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
 		2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */; };
 		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -67,6 +68,7 @@
 		2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthenticationUseCaseTests.swift; sourceTree = "<group>"; };
 		2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessUpdateAuthEndToEndTests.swift; sourceTree = "<group>"; };
 		2E5D6C61273F30E600759017 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		2E5D6C63273F320200759017 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoUserAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5FAB9C2728DA610018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABA12728DA620018E81D /* ToDoUserAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +250,7 @@
 				2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */,
 				2E19884227293A1400D88660 /* SharedTestHelpers.swift */,
 				2E5D6C61273F30E600759017 /* URLProtocolStub.swift */,
+				2E5D6C63273F320200759017 /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E487EC6273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift in Sources */,
+				2E5D6C64273F320200759017 /* HTTPClientSpy.swift in Sources */,
 				2E5D6C62273F30E600759017 /* URLProtocolStub.swift in Sources */,
 				2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */,
 				2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */,
