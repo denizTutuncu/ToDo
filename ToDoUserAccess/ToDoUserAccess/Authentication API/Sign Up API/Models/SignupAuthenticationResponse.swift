@@ -8,6 +8,6 @@
 import Foundation
 
 // MARK: - DataClass
-struct RemoteSignUpResponse: Decodable {
+struct SignupAuthenticationResponse: Decodable {
     let email, token: String
 }

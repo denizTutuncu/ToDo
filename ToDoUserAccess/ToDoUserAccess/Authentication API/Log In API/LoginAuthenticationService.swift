@@ -39,7 +39,7 @@ public final class LoginAuthenticationService: AuthenticationService {
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
         do {
-            let logInResponseData = try RemoteLogInResponseMapper
+            let logInResponseData = try LogInAuthenticationResponseMapper
                 .map(data, from: response)
             return .success(AuthenticationResponse(token: logInResponseData.token))
         } catch {

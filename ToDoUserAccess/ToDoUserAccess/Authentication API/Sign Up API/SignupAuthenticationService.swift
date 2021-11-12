@@ -39,7 +39,7 @@ public final class SignupAuthenticationService: AuthenticationService {
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
         do {
-            let signUpResponseData = try RemoteSignUpResponseMapper
+            let signUpResponseData = try SignupAuthenticationResponseMapper
                 .map(data, from: response)
             return .success(AuthenticationResponse(email: signUpResponseData.email, token: signUpResponseData.token))
         } catch {

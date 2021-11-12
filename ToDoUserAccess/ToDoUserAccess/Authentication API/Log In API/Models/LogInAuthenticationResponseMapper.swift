@@ -7,14 +7,14 @@
 
 import Foundation
 
-class RemoteLogInResponseMapper {
+class LogInAuthenticationResponseMapper {
     private struct Root: Decodable {
-        let data: RemoteLogInResponse
+        let data: LogInAuthenticationResponse
     }
     
     private static var OK_Response: Int { return 201 }
     
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteLogInResponse {
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> LogInAuthenticationResponse {
         guard response.statusCode == OK_Response else {
             throw LoginAuthenticationService.Error.badResponse
         }

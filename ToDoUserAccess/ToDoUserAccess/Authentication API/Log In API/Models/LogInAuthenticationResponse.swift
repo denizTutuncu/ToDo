@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct RemoteLogInResponse: Decodable {
+struct LogInAuthenticationResponse: Decodable {
     let token: String
 }
