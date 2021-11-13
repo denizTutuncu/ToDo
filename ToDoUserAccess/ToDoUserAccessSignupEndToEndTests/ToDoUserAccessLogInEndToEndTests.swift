@@ -46,7 +46,7 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        let logInURL = URL(string: "https://ancient-plateau-22374.herokuapp.com/session")!
+        let logInURL = URL(string: EndPointHelper.logInEndpoint)!
         var urlRequest = URLRequest(url: logInURL)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = makeRequestHttpBodyData()

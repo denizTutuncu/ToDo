@@ -47,7 +47,7 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        let updateAuthRequest = URL(string: "https://ancient-plateau-22374.herokuapp.com/user")!
+        let updateAuthRequest = URL(string: EndPointHelper.updateAuthEndpoint)!
         var urlRequest = URLRequest(url: updateAuthRequest)
         urlRequest.httpMethod = "PUT"
         urlRequest.httpBody = makeRequestHttpBodyData()

@@ -47,7 +47,7 @@ class ToDoUserAccessSignupEndToEndTests: XCTestCase {
     
     //MARK: - Helpers
     private func testRequest() -> URLRequest {
-        let signUpURL = URL(string: "https://ancient-plateau-22374.herokuapp.com/user")!
+        let signUpURL = URL(string: EndPointHelper.signUpEndPoint)!
         var urlRequest = URLRequest(url: signUpURL)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = makeRequestHttpBodyData()
