@@ -128,7 +128,7 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     }
     
     private func expect(_ sut: UpdateAuthenticationService, toCompleteWith expectedResult: UpdateAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait for load completion")
+        let exp = expectation(description: "Wait for perform completion")
         
         sut.perform() { receivedResult in
             switch (receivedResult, expectedResult) {
@@ -148,11 +148,11 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        var urlRequest = URLRequest(url: anyURL())
-        urlRequest.httpMethod = "PUT"
-        urlRequest.httpBody = anyData()
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("RrQMPdQRP85oL1hX9jNKyR5v", forHTTPHeaderField: "Authorization")
+        let urlRequest = URLRequest(url: anyURL())
+//        urlRequest.httpMethod = "PUT"
+//        urlRequest.httpBody = anyData()
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        urlRequest.setValue("RrQMPdQRP85oL1hX9jNKyR5v", forHTTPHeaderField: "Authorization")
         return urlRequest
     }
 }

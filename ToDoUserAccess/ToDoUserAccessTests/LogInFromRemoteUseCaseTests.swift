@@ -128,7 +128,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
     }
     
     private func expect(_ sut: LoginAuthenticationService, toCompleteWith expectedResult: LoginAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait for load completion")
+        let exp = expectation(description: "Wait for perform completion")
         
         sut.perform() { receivedResult in
             switch (receivedResult, expectedResult) {
@@ -148,10 +148,10 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        var urlRequest = URLRequest(url: anyURL())
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = anyData()
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let urlRequest = URLRequest(url: anyURL())
+//        urlRequest.httpMethod = "POST"
+//        urlRequest.httpBody = anyData()
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
 }
