@@ -161,14 +161,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2E487EBC273CA14400CCBDE5 /* Authenticated Routes */ = {
+		2E487EBC273CA14400CCBDE5 /* Authenticated Routes API */ = {
 			isa = PBXGroup;
 			children = (
+				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
 				2E487ECA273CABAA00CCBDE5 /* Delete Session API */,
 				2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */,
-				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
 			);
-			path = "Authenticated Routes";
+			path = "Authenticated Routes API";
 			sourceTree = "<group>";
 		};
 		2E487EBF273CA49300CCBDE5 /* Models */ = {
@@ -279,9 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				2E487EAC273C950200CCBDE5 /* HTTP Client API */,
-				2E487EBC273CA14400CCBDE5 /* Authenticated Routes */,
-				2E487EAD273C953800CCBDE5 /* Log In API */,
 				2E487EAB273C94BC00CCBDE5 /* Sign Up API */,
+				2E487EAD273C953800CCBDE5 /* Log In API */,
+				2E487EBC273CA14400CCBDE5 /* Authenticated Routes API */,
 			);
 			path = "Authentication API";
 			sourceTree = "<group>";
