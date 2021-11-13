@@ -1,8 +1,12 @@
 # Getting Authenticated
 
+---
+
 To get started, you'll need to create a new user, or log in to an existing account.
 
 ## Users and Sessions
+
+---
 
 #### POST /user (sign up)
 
@@ -29,9 +33,6 @@ Response: 201
 }
 ```
 
----
-
-
 #### POST /session (log in)
 
 To fetch an authorization token for an existing user, sign in using the email and password in the following format:
@@ -56,9 +57,9 @@ Response: 201
 }
 ```
 
----
-
 ## Authenticated Routes
+
+---
 
 Both the sign up, and the log in routes return a token. This token can be used to authenticate requests from here in. To authenticate a request, set the Authorization header's value to the value of the token.
 
@@ -66,6 +67,8 @@ Authentication: Mpkz8ZC7Ghq9vKzS5WfAjoVy
 note This isn't particularly secure, but is simple enough for the purpose of this test. It's better to use a real session, or a JWT.
 
 ### Users
+
+---
 
 #### PUT /user (update your user)
 
@@ -92,8 +95,6 @@ Response: 200
 }
 ```
 
----
-
 #### DELETE /user (delete your user)
 
 If you want to remove your user, you can make a DELETE request to the /user route.
@@ -106,9 +107,9 @@ curl -X DELETE https://any-url.com/user \
 
 Response: 204, empty
 
----
-
 ### Sessions
+
+---
 
 #### DELETE /session (log out)
 
@@ -122,9 +123,9 @@ curl -X DELETE https://any-url.com/session \
 
 Response: 204, empty
 
----
+### Todos
 
-## Todos
+---
 
 #### GET /todos (get all todos)
 
@@ -150,8 +151,6 @@ Response: 200
   ]
 }
 ```
-
----
 
 #### POST /todos (create a todo)
 
@@ -181,8 +180,6 @@ Response: 201
 }
 ```
 
----
-
 #### PUT /todos/:id (update a todo)
 
 Update an existing todo by sending a PUT to /todos/:id where :id is the ID of the todo you want to update. Include the title or completed_at timestamp you want to update in the following format:
@@ -211,8 +208,6 @@ Response: 200
   }
 }
 ```
-
----
 
 #### DELETE /todos:id (delete a todo)
 

@@ -7,12 +7,7 @@
 
 import Foundation
 
-public protocol URLRequestWithHTTPBody: AuthenticationService {
-    var token: String { get }
-}
-
-public final class UpdateAuthenticationService: URLRequestWithHTTPBody {
-    public let token: String
+public final class UpdateAuthenticationService: AuthenticationService {
     private let request: URLRequest
     private let client: HTTPClient
     
@@ -20,23 +15,17 @@ public final class UpdateAuthenticationService: URLRequestWithHTTPBody {
         case connectivity
         case invalidData
         case badResponse
-        case emptyToken
     }
     
     public typealias Result = AuthenticationService.Result
     
-    public init(token: String, request: URLRequest, client: HTTPClient) {
-        self.token = token
+    public init(request: URLRequest, client: HTTPClient) {
         self.request = request
         self.client = client
     }
     
     public func perform(completion: @escaping (Result) -> Void) {
-        
-        guard !token.isEmpty else { completion(.failure(Error.emptyToken)); return }
-        
-        // Maybe update the request here before pass it ?? //
-        
+
         client.send(request) { [weak self] result in
             guard self != nil else { return }
             switch result {
