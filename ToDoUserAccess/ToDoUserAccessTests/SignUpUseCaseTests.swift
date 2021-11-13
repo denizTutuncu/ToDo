@@ -1,21 +1,21 @@
 //
-//  LogInFromRemoteUseCaseTests.swift
+//  SignUpUseCaseTests.swift
 //  ToDoUserAccessTests
 //
-//  Created by Deniz Tutuncu on 11/10/21.
+//  Created by Deniz Tutuncu on 10/26/21.
 //
 
 import XCTest
 import ToDoUserAccess
 
-class LogInFromRemoteUseCaseTests: XCTestCase {
+class SignUpUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT(request: testRequest())
         XCTAssertTrue(client.requests.isEmpty)
     }
     
-    func test_logIn_requestsDataFromURL() {
+    func test_signUp_requestsDataFromURL() {
         let request = testRequest()
         
         //system under control
@@ -26,7 +26,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request])
     }
     
-    func test_logInTwice_requestsDataFromURLTwice() {
+    func test_signUpTwice_requestsDataFromURLTwice() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -36,7 +36,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request, request])
     }
     
-    func test_logIn_deliversErrorOnClientError() {
+    func test_signUp_deliversErrorOnClientError() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -47,7 +47,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    func test_logIn_deliversErrorOnNon201HTTPResponse() {
+    func test_signUp_deliversErrorOnNon201HTTPResponse() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -61,7 +61,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_logIn_deliversErrorOn201HTTPResponseWithInvalidJSON() {
+    func test_signUp_deliversErrorOn201HTTPResponseWithInvalidJSON() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -72,12 +72,12 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         }
     }
     
-    func test_logIn_deliversResponseDataOn201HTTPResponseWithValidJSON() {
+    func test_signUp_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
         
-        let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
+        let responseData = makeResponse(email: "email@example.com", token: "CvX9geXFYtLKED2Tre8zKgVT")
         
         expect(sut, toCompleteWith: .success(responseData.model), when: {
             let json = makeResponseJSON(responseData.json)
@@ -85,7 +85,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    func test_logIn_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_signUp_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let requestable = testRequest()
         var sut: SignupAuthenticationService? = SignupAuthenticationService(request: requestable, client: client)
@@ -95,27 +95,29 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         sut?.perform() { capturedResults.append($0) }
         
         sut = nil
-        let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
+        let responseData = makeResponse(email: "email@example.com", token: "CvX9geXFYtLKED2Tre8zKgVT")
         client.complete(withStatusCode: 201, data: makeResponseJSON(responseData.json))
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
     
+    
     //MARK:- helpers
-    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: LoginAuthenticationService, client: HTTPClientSpy) {
+    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: SignupAuthenticationService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = LoginAuthenticationService(request: request, client: client)
+        let sut = SignupAuthenticationService(request: request, client: client)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
     }
     
-    private func failure(_ error: LoginAuthenticationService.Error) -> LoginAuthenticationService.Result {
+    private func failure(_ error: SignupAuthenticationService.Error) -> SignupAuthenticationService.Result {
         return .failure(error)
     }
     
-    private func makeResponse(token: String) -> (model: AuthenticationResponse, json: [String:Any]) {
-        let responseData = AuthenticationResponse(token: token)
+    private func makeResponse(email: String, token: String) -> (model: AuthenticationResponse, json: [String:Any]) {
+        let responseData = AuthenticationResponse(email: email, token: token)
         let json = [
+            "email": email,
             "token": token,
         ].compactMapValues { $0 }
         
@@ -127,14 +129,14 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: LoginAuthenticationService, toCompleteWith expectedResult: LoginAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: SignupAuthenticationService, toCompleteWith expectedResult: SignupAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for perform completion")
         
         sut.perform() { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedResponse), .success(expectedResponse)):
                 XCTAssertEqual(receivedResponse, expectedResponse, file: file, line: line)
-            case let (.failure(receivedError as LoginAuthenticationService.Error), .failure(expectedError as LoginAuthenticationService.Error)):
+            case let (.failure(receivedError as SignupAuthenticationService.Error), .failure(expectedError as SignupAuthenticationService.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
@@ -147,6 +149,7 @@ class LogInFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    //MARK: - Helpers
     private func testRequest() -> URLRequest {
         let urlRequest = URLRequest(url: anyURL())
 //        urlRequest.httpMethod = "POST"

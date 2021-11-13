@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */; };
 		2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19884227293A1400D88660 /* SharedTestHelpers.swift */; };
-		2E487EB2273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */; };
+		2E487EB2273C95B600CCBDE5 /* LogInUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */; };
 		2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */; };
 		2E487EB7273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB6273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift */; };
 		2E487EB9273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB8273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift */; };
@@ -23,7 +23,7 @@
 		2E5D6C64273F320200759017 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C63273F320200759017 /* HTTPClientSpy.swift */; };
 		2E5D6C67273F9F2700759017 /* EndPoint+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C66273F9F2700759017 /* EndPoint+Helpers.swift */; };
 		2E5FABA22728DA620018E81D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
-		2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */; };
+		2E5FABA72728DA620018E81D /* SignUpUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABA62728DA620018E81D /* SignUpUseCaseTests.swift */; };
 		2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
 		2E5FABB72728EDF40018E81D /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB62728EDF40018E81D /* AuthenticationResponse.swift */; };
 		2E5FABB92728EE550018E81D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB82728EE550018E81D /* AuthenticationService.swift */; };
@@ -58,7 +58,7 @@
 /* Begin PBXFileReference section */
 		2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2E19884227293A1400D88660 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
-		2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUseCaseTests.swift; sourceTree = "<group>"; };
 		2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthenticationService.swift; sourceTree = "<group>"; };
 		2E487EB6273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAuthenticationResponse.swift; sourceTree = "<group>"; };
 		2E487EB8273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAuthenticationResponseMapper.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ToDoUserAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E5FAB9C2728DA610018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABA12728DA620018E81D /* ToDoUserAccessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		2E5FABA62728DA620018E81D /* SignUpUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCaseTests.swift; sourceTree = "<group>"; };
 		2E5FABA82728DA620018E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		2E5FABB62728EDF40018E81D /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 			children = (
 				2E5FABA82728DA620018E81D /* Info.plist */,
 				2E5FABB32728DE6D0018E81D /* Helpers */,
-				2E5FABA62728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift */,
-				2E487EB1273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift */,
+				2E5FABA62728DA620018E81D /* SignUpUseCaseTests.swift */,
+				2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */,
 				2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */,
 				2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */,
 			);
@@ -469,9 +469,9 @@
 				2E5D6C64273F320200759017 /* HTTPClientSpy.swift in Sources */,
 				2E5D6C62273F30E600759017 /* URLProtocolStub.swift in Sources */,
 				2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */,
-				2E5FABA72728DA620018E81D /* SignUpFromRemoteUseCaseTests.swift in Sources */,
+				2E5FABA72728DA620018E81D /* SignUpUseCaseTests.swift in Sources */,
 				2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */,
-				2E487EB2273C95B600CCBDE5 /* LogInFromRemoteUseCaseTests.swift in Sources */,
+				2E487EB2273C95B600CCBDE5 /* LogInUseCaseTests.swift in Sources */,
 				2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
