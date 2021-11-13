@@ -56,14 +56,14 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
         
         return urlRequest
     }
-}
-
-private func makeRequestHttpBodyData() -> Data {
-    let json = [
-        "email": "updated@example.com",
-        "password": "my_password",
-    ].compactMapValues { $0 }
     
-    let data = ["user" : json]
-    return try! JSONSerialization.data(withJSONObject: data)
+    private func makeRequestHttpBodyData() -> Data {
+        let json = [
+            "email": "updated@example.com",
+            "password": "my_password",
+        ].compactMapValues { $0 }
+        
+        let data = ["user" : json]
+        return try! JSONSerialization.data(withJSONObject: data)
+    }
 }

@@ -53,14 +53,15 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
-}
-
-private func makeRequestHttpBodyData() -> Data {
-    let json = [
-        "email": "email@example.com",
-        "password": "my_password",
-    ].compactMapValues { $0 }
     
-    let data = ["user" : json]
-    return try! JSONSerialization.data(withJSONObject: data)
+    private func makeRequestHttpBodyData() -> Data {
+        let json = [
+            "email": "email@example.com",
+            "password": "my_password",
+        ].compactMapValues { $0 }
+        
+        let data = ["user" : json]
+        return try! JSONSerialization.data(withJSONObject: data)
+    }
+    
 }

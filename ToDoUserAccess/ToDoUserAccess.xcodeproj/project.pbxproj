@@ -298,8 +298,8 @@
 		2E8F39BF272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
-				2E5D6C65273F9EFB00759017 /* Helpers */,
 				2E8F39C2272BBDCA00706E1D /* Info.plist */,
+				2E5D6C65273F9EFB00759017 /* Helpers */,
 				2E8F39C0272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift */,
 				2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */,
 				2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */,
