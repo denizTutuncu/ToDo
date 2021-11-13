@@ -26,7 +26,7 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request])
     }
     
-    func test_updateAuthTwice_requestsDataFromURLTwice() {
+    func test_updateAuthTwice_requestsDataFromURLOnce() {
         let request = testRequest()
         
         let (sut, client) = makeSUT(request: request)
@@ -86,9 +86,10 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     }
     
     func test_updateAuth_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let anyToken = anyToken()
         let client = HTTPClientSpy()
         let request = testRequest()
-        var sut: UpdateAuthenticationService? = UpdateAuthenticationService(request: request, client: client)
+        var sut: UpdateAuthenticationService? = UpdateAuthenticationService(token: anyToken, request: request, client: client)
         
         
         var capturedResults = [SignupAuthenticationService.Result]()
@@ -103,10 +104,15 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     
     //MARK:- helpers
     private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: UpdateAuthenticationService, client: HTTPClientSpy) {
+        let anyToken = anyToken()
         let client = HTTPClientSpy()
-        let sut = UpdateAuthenticationService(request: request, client: client)
+        let sut = UpdateAuthenticationService(token: anyToken, request: request, client: client)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func anyToken() -> String {
+        return "any token"
     }
     
     private func failure(_ error: UpdateAuthenticationService.Error) -> UpdateAuthenticationService.Result {
@@ -149,10 +155,10 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     
     private func testRequest() -> URLRequest {
         let urlRequest = URLRequest(url: anyURL())
-//        urlRequest.httpMethod = "PUT"
-//        urlRequest.httpBody = anyData()
-//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        urlRequest.setValue("RrQMPdQRP85oL1hX9jNKyR5v", forHTTPHeaderField: "Authorization")
+        //        urlRequest.httpMethod = "PUT"
+        //        urlRequest.httpBody = anyData()
+        //        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        urlRequest.setValue("RrQMPdQRP85oL1hX9jNKyR5v", forHTTPHeaderField: "Authorization")
         return urlRequest
     }
 }

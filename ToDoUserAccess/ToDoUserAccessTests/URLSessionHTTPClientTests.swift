@@ -136,8 +136,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func testRequest() -> URLRequest {
         var urlRequest = URLRequest(url: anyURL())
         urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = anyData()
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        urlRequest.httpBody = anyData()
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
 }
