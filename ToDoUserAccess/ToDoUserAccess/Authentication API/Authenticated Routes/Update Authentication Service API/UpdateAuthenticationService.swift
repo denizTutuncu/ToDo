@@ -24,7 +24,6 @@ public final class UpdateAuthenticationService: AuthenticationService {
         self.client = client
     }
     
-    
     public func perform(completion: @escaping (Result) -> Void) {
         client.send(request) { [weak self] result in
             guard self != nil else { return }
