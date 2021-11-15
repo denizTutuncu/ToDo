@@ -11,35 +11,33 @@ import ToDoUserAccess
 class LogInUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
-        let (_, client) = makeSUT(request: testRequest())
+        let (_, client) = makeSUT()
         XCTAssertTrue(client.requests.isEmpty)
     }
     
     func test_logIn_requestsDataFromURL() {
-        let request = testRequest()
+        let urlRequest = testRequest()
         
         //system under control
-        let (sut, client) = makeSUT(request: request)
+        let (sut, client) = makeSUT()
         //system under control does something
-        sut.perform { _ in }
+        sut.perform(urlRequest: urlRequest) { _ in }
         //Then we check what we want
-        XCTAssertEqual(client.requests, [request])
+        XCTAssertEqual(client.requests, [urlRequest])
     }
     
     func test_logInTwice_requestsDataFromURLTwice() {
-        let request = testRequest()
+        let urlRequest = testRequest()
         
-        let (sut, client) = makeSUT(request: request)
-        sut.perform { _ in }
-        sut.perform { _ in }
+        let (sut, client) = makeSUT()
+        sut.perform(urlRequest: urlRequest) { _ in }
+        sut.perform(urlRequest: urlRequest) { _ in }
         
-        XCTAssertEqual(client.requests, [request, request])
+        XCTAssertEqual(client.requests, [urlRequest])
     }
     
     func test_logIn_deliversErrorOnClientError() {
-        let request = testRequest()
-        
-        let (sut, client) = makeSUT(request: request)
+        let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
@@ -48,9 +46,7 @@ class LogInUseCaseTests: XCTestCase {
     }
     
     func test_logIn_deliversErrorOnNon201HTTPResponse() {
-        let request = testRequest()
-        
-        let (sut, client) = makeSUT(request: request)
+        let (sut, client) = makeSUT()
         let samples = [199, 200, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
@@ -62,9 +58,7 @@ class LogInUseCaseTests: XCTestCase {
     }
     
     func test_logIn_deliversErrorOn201HTTPResponseWithInvalidJSON() {
-        let request = testRequest()
-        
-        let (sut, client) = makeSUT(request: request)
+        let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.invalidData)) {
             let invalidJSON = Data("InvalidJSON".utf8)
@@ -73,9 +67,7 @@ class LogInUseCaseTests: XCTestCase {
     }
     
     func test_logIn_deliversResponseDataOn201HTTPResponseWithValidJSON() {
-        let request = testRequest()
-        
-        let (sut, client) = makeSUT(request: request)
+        let (sut, client) = makeSUT()
         
         let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
         
@@ -87,12 +79,12 @@ class LogInUseCaseTests: XCTestCase {
     
     func test_logIn_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
-        let requestable = testRequest()
-        var sut: SignupAuthenticationService? = SignupAuthenticationService(request: requestable, client: client)
+        let urlRequest = testRequest()
         
+        var sut: SignupAuthenticationService? = SignupAuthenticationService(client: client)
         
         var capturedResults = [SignupAuthenticationService.Result]()
-        sut?.perform() { capturedResults.append($0) }
+        sut?.perform(urlRequest: urlRequest) { capturedResults.append($0) }
         
         sut = nil
         let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
@@ -102,9 +94,9 @@ class LogInUseCaseTests: XCTestCase {
     }
     
     //MARK:- helpers
-    private func makeSUT(request: URLRequest, file: StaticString = #file, line: UInt = #line) -> (sut: LoginAuthenticationService, client: HTTPClientSpy) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LoginAuthenticationService, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = LoginAuthenticationService(request: request, client: client)
+        let sut = LoginAuthenticationService(client: client)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, client)
     }
@@ -128,9 +120,10 @@ class LogInUseCaseTests: XCTestCase {
     }
     
     private func expect(_ sut: LoginAuthenticationService, toCompleteWith expectedResult: LoginAuthenticationService.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let urlRequest = testRequest()
         let exp = expectation(description: "Wait for perform completion")
         
-        sut.perform() { receivedResult in
+        sut.perform(urlRequest: urlRequest) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedResponse), .success(expectedResponse)):
                 XCTAssertEqual(receivedResponse, expectedResponse, file: file, line: line)

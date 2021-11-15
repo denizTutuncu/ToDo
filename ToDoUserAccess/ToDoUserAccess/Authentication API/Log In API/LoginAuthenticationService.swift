@@ -8,7 +8,7 @@
 import Foundation
 
 public final class LoginAuthenticationService: AuthenticationService {
-    private let request: URLRequest
+    private var requests: [URLRequest]
     private let client: HTTPClient
     
     public enum Error: Swift.Error {
@@ -19,22 +19,34 @@ public final class LoginAuthenticationService: AuthenticationService {
     
     public typealias Result = AuthenticationService.Result
     
-    public init(request: URLRequest, client: HTTPClient) {
-        self.request = request
+    public init(client: HTTPClient) {
+        self.requests = []
         self.client = client
     }
     
-    public func perform(completion: @escaping (Result) -> Void) {
-        
-        client.send(request) { [weak self] result in
-            guard self != nil else { return }
-            switch result {
-            case let .success((data, response)):
-                completion(LoginAuthenticationService.map(data, from: response))
-            case .failure:
-                completion(.failure(Error.connectivity))
+    public func perform(urlRequest: URLRequest,completion: @escaping (Result) -> Void) {
+        switch secureURLRequestQueue(urlRequest) {
+        case .none:
+            break
+            
+        case let .some(urlRequest):
+            client.send(urlRequest) { [weak self] result in
+                guard self != nil else { return }
+                switch result {
+                case let .success((data, response)):
+                    completion(LoginAuthenticationService.map(data, from: response))
+                case .failure:
+                    completion(.failure(Error.connectivity))
+                }
+                self?.requests = []
             }
         }
+    }
+    
+    private func secureURLRequestQueue(_ request: URLRequest) -> URLRequest? {
+        guard requests.isEmpty else { return nil }
+        requests.append(request)
+        return request
     }
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
