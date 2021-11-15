@@ -27,9 +27,9 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
     
     //MARK:- Helpers
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
-        let request = testRequest()
+        let urlRequest = testRequest()
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let updateAuthService = UpdateAuthenticationService(request: request, client: client)
+        let updateAuthService = UpdateAuthenticationService(client: client)
         
         trackForMemoryLeaks(client, file: file, line: line)
         trackForMemoryLeaks(updateAuthService, file: file, line: line)
@@ -37,7 +37,7 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
         let exp = expectation(description: "Wait For Completion")
         
         var receivedResult: AuthenticationService.Result?
-        updateAuthService.perform { result in
+        updateAuthService.perform(urlRequest: urlRequest) { result in
             receivedResult = result
             exp.fulfill()
         }

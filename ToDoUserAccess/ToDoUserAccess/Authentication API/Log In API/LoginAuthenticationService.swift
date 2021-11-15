@@ -8,7 +8,7 @@
 import Foundation
 
 public final class LoginAuthenticationService: AuthenticationService {
-    private var requests: [URLRequest]
+    private var urlRequests: [URLRequest]
     private let client: HTTPClient
     
     public enum Error: Swift.Error {
@@ -20,7 +20,7 @@ public final class LoginAuthenticationService: AuthenticationService {
     public typealias Result = AuthenticationService.Result
     
     public init(client: HTTPClient) {
-        self.requests = []
+        self.urlRequests = []
         self.client = client
     }
     
@@ -38,14 +38,14 @@ public final class LoginAuthenticationService: AuthenticationService {
                 case .failure:
                     completion(.failure(Error.connectivity))
                 }
-                self?.requests = []
+                self?.urlRequests = []
             }
         }
     }
     
     private func secureURLRequestQueue(_ request: URLRequest) -> URLRequest? {
-        guard requests.isEmpty else { return nil }
-        requests.append(request)
+        guard urlRequests.isEmpty else { return nil }
+        urlRequests.append(request)
         return request
     }
     
