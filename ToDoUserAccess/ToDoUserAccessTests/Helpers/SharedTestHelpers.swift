@@ -14,3 +14,11 @@ func anyURL() -> URL {
 func anyData() -> Data {
     return Data("Any data".utf8)
 }
+
+func testRequest() -> URLRequest {
+    let urlRequest = URLRequest(url: anyURL())
+    //        urlRequest.httpMethod = "POST"
+    //        urlRequest.httpBody = anyData()
+    //        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    return urlRequest
+}

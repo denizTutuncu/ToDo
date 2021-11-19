@@ -24,11 +24,11 @@ class URLSessionHTTPClientTests: XCTestCase {
         let testRequest = testRequest()
         
         let exp = expectation(description: "Wait for test request")
-        URLProtocolStub.observeRequests { request in
-            XCTAssertEqual(request.url, testRequest.url)
-            XCTAssertEqual(request.httpMethod, testRequest.httpMethod)
-//            XCTAssertEqual(request.httpBody, testRequest.httpBody)
-//            XCTAssertEqual(request.allHTTPHeaderFields, testRequest.allHTTPHeaderFields)
+        URLProtocolStub.observeRequests { urlRequest in
+            XCTAssertEqual(urlRequest.url, testRequest.url)
+            XCTAssertEqual(urlRequest.httpMethod, testRequest.httpMethod)
+//            XCTAssertEqual(urlRequest.httpBody, testRequest.httpBody)
+//            XCTAssertEqual(urlRequest.allHTTPHeaderFields, testRequest.allHTTPHeaderFields)
             exp.fulfill()
         }
         
@@ -107,12 +107,13 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func resultFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) -> HTTPClient.Result {
         URLProtocolStub.stub(data: data, response: response, error: error)
         let sut = makeSUT(file: file, line: line)
+        let testURLRequest = testRequest()
         
         let exp = expectation(description: "Wait for completion")
         
         var receivedResult: HTTPClient.Result!
         
-        sut.send(URLRequest(url: anyURL())) { result in
+        sut.send(testURLRequest) { result in
             receivedResult = result
             exp.fulfill()
         }
@@ -132,12 +133,5 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func nonHTTPURLResponse() -> URLResponse {
         return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
-    
-    private func testRequest() -> URLRequest {
-        var urlRequest = URLRequest(url: anyURL())
-        urlRequest.httpMethod = "POST"
-//        urlRequest.httpBody = anyData()
-//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return urlRequest
-    }
+
 }
