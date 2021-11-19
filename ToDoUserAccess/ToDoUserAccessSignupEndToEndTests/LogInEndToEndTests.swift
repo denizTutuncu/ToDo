@@ -1,6 +1,6 @@
 //
-//  ToDoUserAccessLogInEndToEndTests.swift
-//  ToDoUserAccessSignupEndToEndTests
+//  LogInEndToEndTests.swift
+//  LogInEndToEndTests
 //
 //  Created by Deniz Tutuncu on 11/10/21.
 //
@@ -8,14 +8,15 @@
 import XCTest
 import ToDoUserAccess
 
-class ToDoUserAccessLogInEndToEndTests: XCTestCase {
+class LogInEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerPOSTLogInResult_matchesFixedTestAccountData() {
+    func test_endToEndTestServerPOSTLogInResult_returnsExpectedResponse() {
         switch getResult() {
         case let .success(loginResponse):
             XCTAssertNotNil(loginResponse)
             XCTAssertNil(loginResponse.email)
             XCTAssertNotNil(loginResponse.token)
+            
         case let .failure(error):
             print("ERROR is \(error)")
             XCTFail("Expected successful feed result, got \(error) instead.")
@@ -46,7 +47,7 @@ class ToDoUserAccessLogInEndToEndTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        let logInURL = URL(string: EndPointHelper.logInEndpoint)!
+        let logInURL = URL(string: EndPointHelper.sessionEndpoint)!
         var urlRequest = URLRequest(url: logInURL)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = makeRequestHttpBodyData()

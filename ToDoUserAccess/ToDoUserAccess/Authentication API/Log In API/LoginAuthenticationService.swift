@@ -38,15 +38,23 @@ public final class LoginAuthenticationService: AuthenticationService {
                 case .failure:
                     completion(.failure(Error.connectivity))
                 }
-                self?.urlRequests = []
+                self?.clearURLRequestQueue()
             }
         }
     }
     
-    private func secureURLRequestQueue(_ request: URLRequest) -> URLRequest? {
+    private func secureURLRequestQueue(_ urlRequest: URLRequest) -> URLRequest? {
         guard urlRequests.isEmpty else { return nil }
-        urlRequests.append(request)
-        return request
+        updateQueueWith(urlRequest)
+        return urlRequest
+    }
+    
+    private func clearURLRequestQueue() {
+        urlRequests = []
+    }
+    
+    private func updateQueueWith(_ urlRequest: URLRequest) {
+        urlRequests.append(urlRequest)
     }
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
