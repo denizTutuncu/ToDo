@@ -16,17 +16,18 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
     }
     
     func test_perform_requestsDataFromURL() {
-        let request = testRequest()
-        
         //system under control
         let (sut, client) = makeSUT()
+        
+        let request = testRequest()
+        
         //system under control does something
         sut.perform(urlRequest: request) { _ in }
         //Then we check what we want
         XCTAssertEqual(client.requests, [request])
     }
     
-    func test_performTwice_requestsDataFromURLOnce() {
+    func test_performTwice_requestsDataFromURLOnlyOnceBeforeClientCompletes() {
         let request = testRequest()
         
         let (sut, client) = makeSUT()
@@ -36,61 +37,93 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         XCTAssertEqual(client.requests, [request])
     }
     
-
+    func test_perform_canRequestDataFromURLAfterClientCompletes() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
+        })
+        
+        let urlRequest = testRequest()
+        sut.perform(urlRequest: urlRequest) { _ in }
+        XCTAssertEqual(client.requests, [urlRequest, urlRequest])
+    }
+    
     func test_perform_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-
+        
         expect(sut, toCompleteWith: failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
         })
     }
-
-    func test_perform_deliversErrorOnNon200HTTPResponse() {
+    
+    func test_perform_deliversUnauthorizedErrorOn401HTTPResponse() {
+        let (sut, client) = makeSUT()
+        let errorCode = 401
+    
+        expect(sut, toCompleteWith: failure(.unauthorized)) {
+            let json = makeResponseJSON(.none)
+            client.complete(withStatusCode: errorCode, data: json)
+        }
+    }
+    
+    func test_perform_deliversBadResponseErrorOn404HTTPResponse() {
+        let (sut, client) = makeSUT()
+        let errorCode = 404
+    
+        expect(sut, toCompleteWith: failure(.badResponse)) {
+            let json = makeResponseJSON(.none)
+            client.complete(withStatusCode: errorCode, data: json)
+        }
+    }
+    
+    func test_perform_deliversUnexpectedErrorOnNonDefinedHTTPResponse() {
         let (sut, client) = makeSUT()
         let samples = [199, 201, 300, 400, 500]
-
+        
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: failure(.badResponse)) {
+            expect(sut, toCompleteWith: failure(.unexpected)) {
                 let json = makeResponseJSON(.none)
                 client.complete(withStatusCode: code, data: json, at: index)
             }
         }
     }
-
+    
     func test_perform_deliversErrorOn201HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
-
+        
         expect(sut, toCompleteWith: failure(.invalidData)) {
             let invalidJSON = Data("InvalidJSON".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         }
     }
-
+    
     func test_perform_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let (sut, client) = makeSUT()
-
+        
         let responseData = makeResponse(email: "updated@example.com")
-
+        
         expect(sut, toCompleteWith: .success(responseData.model), when: {
             let json = makeResponseJSON(responseData.json)
             client.complete(withStatusCode: 200, data: json)
         })
     }
-
-    func test_performh_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    
+    func test_perform_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let request = testRequest()
+        
         var sut: UpdateAuthenticationService? = UpdateAuthenticationService(client: client)
-
-
+        
         var capturedResults = [UpdateAuthenticationService.Result]()
         sut?.perform(urlRequest: request) { capturedResults.append($0) }
-
+        
         sut = nil
         let responseData = makeResponse(email: "updated@example.com")
         client.complete(withStatusCode: 200, data: makeResponseJSON(responseData.json))
-
+        
         XCTAssertTrue(capturedResults.isEmpty)
     }
     
@@ -141,14 +174,6 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func testRequest() -> URLRequest {
-        let urlRequest = URLRequest(url: anyURL())
-        //        urlRequest.httpMethod = "PUT"
-        //        urlRequest.httpBody = anyData()
-        //        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //        urlRequest.setValue("RrQMPdQRP85oL1hX9jNKyR5v", forHTTPHeaderField: "Authorization")
-        return urlRequest
-    }
 }
 
 

@@ -1,6 +1,6 @@
 //
-//  ToDoUserAccessUpdateAuthEndToEndTests.swift
-//  ToDoUserAccessSignupEndToEndTests
+//  UpdateAuthEndToEndTests.swift
+//  UpdateAuthEndToEndTests
 //
 //  Created by Deniz Tutuncu on 11/10/21.
 //
@@ -8,15 +8,15 @@
 import XCTest
 import ToDoUserAccess
 
-class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
+class UpdateAuthEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerUpdateAuthResult_matchesFixedTestAccountData() {
+    func test_endToEndTestServerUpdateAuthResult_returnsExpectedResponse() {
         switch getResult() {
         case let .success(updatedAuthResponse):
             XCTAssertNotNil(updatedAuthResponse)
             XCTAssertNotNil(updatedAuthResponse.email)
             XCTAssertNil(updatedAuthResponse.token)
-            
+
         case let .failure(error):
             print("ERROR is \(error)")
             XCTFail("Expected successful feed result, got \(error) instead.")
@@ -47,7 +47,7 @@ class ToDoUserAccessUpdateAuthEndToEndTests: XCTestCase {
     }
     
     private func testRequest() -> URLRequest {
-        let updateAuthRequest = URL(string: EndPointHelper.updateAuthEndpoint)!
+        let updateAuthRequest = URL(string: EndPointHelper.userEndPoint)!
         var urlRequest = URLRequest(url: updateAuthRequest)
         urlRequest.httpMethod = "PUT"
         urlRequest.httpBody = makeRequestHttpBodyData()
