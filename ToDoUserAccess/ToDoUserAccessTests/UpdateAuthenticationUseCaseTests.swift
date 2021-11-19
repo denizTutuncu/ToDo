@@ -64,8 +64,8 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         let errorCode = 401
     
         expect(sut, toCompleteWith: failure(.unauthorized)) {
-            let json = makeResponseJSON(.none)
-            client.complete(withStatusCode: errorCode, data: json)
+            let data = makeResponseDataFromJSON(.none)
+            client.complete(withStatusCode: errorCode, data: data)
         }
     }
     
@@ -74,8 +74,8 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         let errorCode = 404
     
         expect(sut, toCompleteWith: failure(.badResponse)) {
-            let json = makeResponseJSON(.none)
-            client.complete(withStatusCode: errorCode, data: json)
+            let data = makeResponseDataFromJSON(.none)
+            client.complete(withStatusCode: errorCode, data: data)
         }
     }
     
@@ -85,8 +85,8 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.unexpected)) {
-                let json = makeResponseJSON(.none)
-                client.complete(withStatusCode: code, data: json, at: index)
+                let data = makeResponseDataFromJSON(.none)
+                client.complete(withStatusCode: code, data: data, at: index)
             }
         }
     }
@@ -95,19 +95,20 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.invalidData)) {
-            let invalidJSON = Data("InvalidJSON".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
+            let invalidData = Data("InvalidJSON".utf8)
+            client.complete(withStatusCode: 200, data: invalidData)
         }
     }
     
     func test_perform_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let (sut, client) = makeSUT()
         
-        let responseData = makeResponse(email: "updated@example.com")
-        
-        expect(sut, toCompleteWith: .success(responseData.model), when: {
-            let json = makeResponseJSON(responseData.json)
-            client.complete(withStatusCode: 200, data: json)
+        let response = makeResponse(email: "updated@example.com")
+        let model = response.model
+     
+        expect(sut, toCompleteWith: .success(model), when: {
+            let validData = makeResponseDataFromJSON(response.json)
+            client.complete(withStatusCode: 200, data: validData)
         })
     }
     
@@ -121,8 +122,10 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         sut?.perform(urlRequest: request) { capturedResults.append($0) }
         
         sut = nil
-        let responseData = makeResponse(email: "updated@example.com")
-        client.complete(withStatusCode: 200, data: makeResponseJSON(responseData.json))
+        let response = makeResponse(email: "updated@example.com")
+        let validData = makeResponseDataFromJSON(response.json)
+        
+        client.complete(withStatusCode: 200, data: validData)
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -148,7 +151,7 @@ class UpdateAuthenticationUseCaseTests: XCTestCase {
         return (responseData, json)
     }
     
-    private func makeResponseJSON(_ data: [String:Any]?) -> Data {
+    private func makeResponseDataFromJSON(_ data: [String:Any]?) -> Data {
         let json = ["data" : data]
         return try! JSONSerialization.data(withJSONObject: json)
     }
