@@ -11,20 +11,20 @@ import ToDoUserAccess
 
 class DeleteUserAuthEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerDELETEAuthResult_returnsExpectedResponse() {
-        switch getResult() {
-        case let .success(deletedAuthResponse):
-            XCTAssertNil(deletedAuthResponse)
-            XCTAssertNil(deletedAuthResponse.email)
-            XCTAssertNil(deletedAuthResponse.token)
-            
-        case let .failure(error):
-            print("ERROR is \(error)")
-            XCTFail("Expected successful feed result, got \(error) instead.")
-        default:
-            XCTFail("Expected successful feed result, got no result instead.")
-        }
-    }
+//    func test_endToEndTestServerDELETEAuthResult_returnsExpectedResponse() {
+//        switch getResult() {
+//        case let .success(deletedAuthResponse):
+//            XCTAssertNil(deletedAuthResponse)
+//            XCTAssertNil(deletedAuthResponse.email)
+//            XCTAssertNil(deletedAuthResponse.token)
+//            
+//        case let .failure(error):
+//            print("ERROR is \(error)")
+//            XCTFail("Expected successful feed result, got \(error) instead.")
+//        default:
+//            XCTFail("Expected successful feed result, got no result instead.")
+//        }
+//    }
     
     //MARK:- Helpers
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {

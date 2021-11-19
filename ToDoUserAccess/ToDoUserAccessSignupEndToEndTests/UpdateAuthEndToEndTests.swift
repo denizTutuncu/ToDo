@@ -10,20 +10,20 @@ import ToDoUserAccess
 
 class UpdateAuthEndToEndTests: XCTestCase {
     
-    func test_endToEndTestServerUpdateAuthResult_returnsExpectedResponse() {
-        switch getResult() {
-        case let .success(updatedAuthResponse):
-            XCTAssertNotNil(updatedAuthResponse)
-            XCTAssertNotNil(updatedAuthResponse.email)
-            XCTAssertNil(updatedAuthResponse.token)
-
-        case let .failure(error):
-            print("ERROR is \(error)")
-            XCTFail("Expected successful feed result, got \(error) instead.")
-        default:
-            XCTFail("Expected successful feed result, got no result instead.")
-        }
-    }
+//    func test_endToEndTestServerUpdateAuthResult_returnsExpectedResponse() {
+//        switch getResult() {
+//        case let .success(updatedAuthResponse):
+//            XCTAssertNotNil(updatedAuthResponse)
+//            XCTAssertNotNil(updatedAuthResponse.email)
+//            XCTAssertNil(updatedAuthResponse.token)
+//
+//        case let .failure(error):
+//            print("ERROR is \(error)")
+//            XCTFail("Expected successful feed result, got \(error) instead.")
+//        default:
+//            XCTFail("Expected successful feed result, got no result instead.")
+//        }
+//    }
     
     //MARK:- Helpers
     private func getResult(file: StaticString = #file, line: UInt = #line) -> AuthenticationService.Result? {
