@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0B3217274705DF002422ED /* DeleteAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0B3216274705DF002422ED /* DeleteAuthenticationService.swift */; };
+		2E0B321A274706E2002422ED /* DeleteAuthenticationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0B3219274706E2002422ED /* DeleteAuthenticationMapper.swift */; };
+		2E0B321C2747086D002422ED /* DeleteUserAuthUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0B321B2747086D002422ED /* DeleteUserAuthUseCaseTests.swift */; };
+		2E0B321E27470FCD002422ED /* DeleteUserAuthEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0B321D27470FCD002422ED /* DeleteUserAuthEndToEndTests.swift */; };
 		2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */; };
 		2E19884327293A1400D88660 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E19884227293A1400D88660 /* SharedTestHelpers.swift */; };
 		2E487EB2273C95B600CCBDE5 /* LogInUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */; };
 		2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */; };
 		2E487EB7273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB6273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift */; };
 		2E487EB9273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EB8273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift */; };
-		2E487EBB273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */; };
+		2E487EBB273C9BFD00CCBDE5 /* LogInEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBA273C9BFD00CCBDE5 /* LogInEndToEndTests.swift */; };
 		2E487EBE273CA43B00CCBDE5 /* UpdateAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */; };
 		2E487EC1273CA60500CCBDE5 /* UpdatedAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC0273CA60500CCBDE5 /* UpdatedAuthResponse.swift */; };
 		2E487EC3273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC2273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift */; };
 		2E487EC6273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */; };
-		2E487EC8273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */; };
+		2E487EC8273CA9E000CCBDE5 /* UpdateAuthEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E487EC7273CA9E000CCBDE5 /* UpdateAuthEndToEndTests.swift */; };
 		2E5D6C62273F30E600759017 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C61273F30E600759017 /* URLProtocolStub.swift */; };
 		2E5D6C64273F320200759017 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C63273F320200759017 /* HTTPClientSpy.swift */; };
 		2E5D6C67273F9F2700759017 /* EndPoint+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5D6C66273F9F2700759017 /* EndPoint+Helpers.swift */; };
@@ -33,7 +37,7 @@
 		2E5FABC32728F1630018E81D /* SignupAuthenticationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABC22728F1630018E81D /* SignupAuthenticationResponseMapper.swift */; };
 		2E5FABC52728F6630018E81D /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABC42728F6630018E81D /* URLSessionHTTPClient.swift */; };
 		2E8F39B2272B4C4800706E1D /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F39B1272B4C4800706E1D /* Requestable.swift */; };
-		2E8F39C1272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F39C0272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift */; };
+		2E8F39C1272BBDCA00706E1D /* SignupEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F39C0272BBDCA00706E1D /* SignupEndToEndTests.swift */; };
 		2E8F39C3272BBDCA00706E1D /* ToDoUserAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5FAB982728DA610018E81D /* ToDoUserAccess.framework */; };
 		2E8F39C9272BBF9300706E1D /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5FABB42728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
@@ -56,18 +60,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E0B3216274705DF002422ED /* DeleteAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAuthenticationService.swift; sourceTree = "<group>"; };
+		2E0B3219274706E2002422ED /* DeleteAuthenticationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAuthenticationMapper.swift; sourceTree = "<group>"; };
+		2E0B321B2747086D002422ED /* DeleteUserAuthUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAuthUseCaseTests.swift; sourceTree = "<group>"; };
+		2E0B321D27470FCD002422ED /* DeleteUserAuthEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserAuthEndToEndTests.swift; sourceTree = "<group>"; };
 		2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		2E19884227293A1400D88660 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInUseCaseTests.swift; sourceTree = "<group>"; };
 		2E487EB3273C9ABE00CCBDE5 /* LoginAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthenticationService.swift; sourceTree = "<group>"; };
 		2E487EB6273C9B1200CCBDE5 /* LogInAuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAuthenticationResponse.swift; sourceTree = "<group>"; };
 		2E487EB8273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAuthenticationResponseMapper.swift; sourceTree = "<group>"; };
-		2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessLogInEndToEndTests.swift; sourceTree = "<group>"; };
+		2E487EBA273C9BFD00CCBDE5 /* LogInEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInEndToEndTests.swift; sourceTree = "<group>"; };
 		2E487EBD273CA43B00CCBDE5 /* UpdateAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthenticationService.swift; sourceTree = "<group>"; };
 		2E487EC0273CA60500CCBDE5 /* UpdatedAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAuthResponse.swift; sourceTree = "<group>"; };
 		2E487EC2273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedAuthResponseMapper.swift; sourceTree = "<group>"; };
 		2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthenticationUseCaseTests.swift; sourceTree = "<group>"; };
-		2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessUpdateAuthEndToEndTests.swift; sourceTree = "<group>"; };
+		2E487EC7273CA9E000CCBDE5 /* UpdateAuthEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAuthEndToEndTests.swift; sourceTree = "<group>"; };
 		2E5D6C61273F30E600759017 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		2E5D6C63273F320200759017 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		2E5D6C66273F9F2700759017 /* EndPoint+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndPoint+Helpers.swift"; sourceTree = "<group>"; };
@@ -86,7 +94,7 @@
 		2E5FABC42728F6630018E81D /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		2E8F39B1272B4C4800706E1D /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		2E8F39BE272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUserAccessSignupEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E8F39C0272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUserAccessSignupEndToEndTests.swift; sourceTree = "<group>"; };
+		2E8F39C0272BBDCA00706E1D /* SignupEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEndToEndTests.swift; sourceTree = "<group>"; };
 		2E8F39C2272BBDCA00706E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
-				2E487ECA273CABAA00CCBDE5 /* Delete Session API */,
+				2E487ECA273CABAA00CCBDE5 /* Log Out API */,
 				2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */,
 			);
 			path = "Authenticated Routes API";
@@ -192,15 +200,17 @@
 		2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */ = {
 			isa = PBXGroup;
 			children = (
+				2E0B3219274706E2002422ED /* DeleteAuthenticationMapper.swift */,
+				2E0B3216274705DF002422ED /* DeleteAuthenticationService.swift */,
 			);
 			path = "Delete Authentication Service API";
 			sourceTree = "<group>";
 		};
-		2E487ECA273CABAA00CCBDE5 /* Delete Session API */ = {
+		2E487ECA273CABAA00CCBDE5 /* Log Out API */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "Delete Session API";
+			path = "Log Out API";
 			sourceTree = "<group>";
 		};
 		2E5D6C65273F9EFB00759017 /* Helpers */ = {
@@ -249,6 +259,7 @@
 				2E5FABA62728DA620018E81D /* SignUpUseCaseTests.swift */,
 				2E487EB1273C95B600CCBDE5 /* LogInUseCaseTests.swift */,
 				2E487EC5273CA80700CCBDE5 /* UpdateAuthenticationUseCaseTests.swift */,
+				2E0B321B2747086D002422ED /* DeleteUserAuthUseCaseTests.swift */,
 				2E1988402729396600D88660 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = ToDoUserAccessTests;
@@ -300,9 +311,10 @@
 			children = (
 				2E8F39C2272BBDCA00706E1D /* Info.plist */,
 				2E5D6C65273F9EFB00759017 /* Helpers */,
-				2E8F39C0272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift */,
-				2E487EBA273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift */,
-				2E487EC7273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift */,
+				2E8F39C0272BBDCA00706E1D /* SignupEndToEndTests.swift */,
+				2E487EBA273C9BFD00CCBDE5 /* LogInEndToEndTests.swift */,
+				2E487EC7273CA9E000CCBDE5 /* UpdateAuthEndToEndTests.swift */,
+				2E0B321D27470FCD002422ED /* DeleteUserAuthEndToEndTests.swift */,
 			);
 			path = ToDoUserAccessSignupEndToEndTests;
 			sourceTree = "<group>";
@@ -444,11 +456,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E0B3217274705DF002422ED /* DeleteAuthenticationService.swift in Sources */,
 				2E487EBE273CA43B00CCBDE5 /* UpdateAuthenticationService.swift in Sources */,
 				2E487EC1273CA60500CCBDE5 /* UpdatedAuthResponse.swift in Sources */,
 				2E5FABC52728F6630018E81D /* URLSessionHTTPClient.swift in Sources */,
 				2E487EC3273CA62200CCBDE5 /* UpdatedAuthResponseMapper.swift in Sources */,
 				2E8F39B2272B4C4800706E1D /* Requestable.swift in Sources */,
+				2E0B321A274706E2002422ED /* DeleteAuthenticationMapper.swift in Sources */,
 				2E487EB4273C9ABE00CCBDE5 /* LoginAuthenticationService.swift in Sources */,
 				2E5FABC12728F13E0018E81D /* SignupAuthenticationResponse.swift in Sources */,
 				2E487EB9273C9B3200CCBDE5 /* LogInAuthenticationResponseMapper.swift in Sources */,
@@ -473,6 +487,7 @@
 				2E1988412729396600D88660 /* URLSessionHTTPClientTests.swift in Sources */,
 				2E487EB2273C95B600CCBDE5 /* LogInUseCaseTests.swift in Sources */,
 				2E5FABB52728DE780018E81D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				2E0B321C2747086D002422ED /* DeleteUserAuthUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,11 +495,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E8F39C1272BBDCA00706E1D /* ToDoUserAccessSignupEndToEndTests.swift in Sources */,
+				2E8F39C1272BBDCA00706E1D /* SignupEndToEndTests.swift in Sources */,
 				2E5D6C67273F9F2700759017 /* EndPoint+Helpers.swift in Sources */,
 				2E8F39C9272BBF9300706E1D /* XCTestCase+MemoryLeakTracking.swift in Sources */,
-				2E487EC8273CA9E000CCBDE5 /* ToDoUserAccessUpdateAuthEndToEndTests.swift in Sources */,
-				2E487EBB273C9BFD00CCBDE5 /* ToDoUserAccessLogInEndToEndTests.swift in Sources */,
+				2E487EC8273CA9E000CCBDE5 /* UpdateAuthEndToEndTests.swift in Sources */,
+				2E0B321E27470FCD002422ED /* DeleteUserAuthEndToEndTests.swift in Sources */,
+				2E487EBB273C9BFD00CCBDE5 /* LogInEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
