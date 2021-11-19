@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				2E487EC4273CA6C100CCBDE5 /* Update Authentication Service API */,
-				2E487ECA273CABAA00CCBDE5 /* Log Out API */,
 				2E487EC9273CAB8C00CCBDE5 /* Delete Authentication Service API */,
+				2E487ECA273CABAA00CCBDE5 /* Log Out API */,
 			);
 			path = "Authenticated Routes API";
 			sourceTree = "<group>";

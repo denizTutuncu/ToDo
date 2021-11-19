@@ -65,7 +65,7 @@ class LogInUseCaseTests: XCTestCase {
         
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: failure(.badResponse)) {
-                let json = makeResponseJSON(.none)
+                let json = makeResponseDataFromJSON(.none)
                 client.complete(withStatusCode: code, data: json, at: index)
             }
         }
@@ -83,11 +83,11 @@ class LogInUseCaseTests: XCTestCase {
     func test_perform_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let (sut, client) = makeSUT()
         
-        let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
+        let response = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
         
-        expect(sut, toCompleteWith: .success(responseData.model), when: {
-            let json = makeResponseJSON(responseData.json)
-            client.complete(withStatusCode: 201, data: json)
+        expect(sut, toCompleteWith: .success(response.model), when: {
+            let data = makeResponseDataFromJSON(response.json)
+            client.complete(withStatusCode: 201, data: data)
         })
     }
     
@@ -101,8 +101,9 @@ class LogInUseCaseTests: XCTestCase {
         sut?.perform(urlRequest: urlRequest) { capturedResults.append($0) }
         
         sut = nil
-        let responseData = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
-        client.complete(withStatusCode: 201, data: makeResponseJSON(responseData.json))
+        let response = makeResponse(token: "CvX9geXFYtLKED2Tre8zKgVT")
+        let data = makeResponseDataFromJSON(response.json)
+        client.complete(withStatusCode: 201, data: data)
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -128,7 +129,7 @@ class LogInUseCaseTests: XCTestCase {
         return (responseData, json)
     }
     
-    private func makeResponseJSON(_ data: [String:Any]?) -> Data {
+    private func makeResponseDataFromJSON(_ data: [String:Any]?) -> Data {
         let json = ["data" : data]
         return try! JSONSerialization.data(withJSONObject: json)
     }
