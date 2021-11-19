@@ -94,11 +94,11 @@ class DeleteUserAuthUseCaseTests: XCTestCase {
     func test_perform_deliversResponseDataOn204HTTPResponse() {
         let (sut, client) = makeSUT()
         
-        let responseData = emptyResponseModel()
+        let emptyResponse = emptyResponse()
         
-        expect(sut, toCompleteWith: .success(responseData), when: {
-            let responseAsEmptyData = emptyData()
-            client.complete(withStatusCode: 204, data: responseAsEmptyData)
+        expect(sut, toCompleteWith: .success(emptyResponse), when: {
+            let emptyData = emptyData()
+            client.complete(withStatusCode: 204, data: emptyData)
         })
     }
     
@@ -112,8 +112,8 @@ class DeleteUserAuthUseCaseTests: XCTestCase {
         sut?.perform(urlRequest: request) { capturedResults.append($0) }
         
         sut = nil
-        let responseAsEmptyData = emptyData()
-        client.complete(withStatusCode: 204, data: responseAsEmptyData)
+        let emptyData = emptyData()
+        client.complete(withStatusCode: 204, data: emptyData)
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -131,7 +131,7 @@ class DeleteUserAuthUseCaseTests: XCTestCase {
         return .failure(error)
     }
     
-    private func emptyResponseModel() -> AuthenticationResponse {
+    private func emptyResponse() -> AuthenticationResponse {
         let responseData = AuthenticationResponse(email: nil, token: nil)
         return responseData
     }
