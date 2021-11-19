@@ -213,7 +213,7 @@ Response: 200
 
 Delete an existing todo by sending a DELETE request to /todos/:id where :id is the ID of the todo you want to delete.
 ```
-curl -X DELETE https://ancient-plateau-22374.herokuapp.com/todos/1 \
+curl -X DELETE https://any-url.com/todos/1 \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Zm8yaqR9L1r4Y2pBhPhQrBjz'
 ```  
