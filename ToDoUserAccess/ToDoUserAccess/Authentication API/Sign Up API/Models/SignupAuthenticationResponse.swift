@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - DataClass
 struct SignupAuthenticationResponse: Decodable {
     let email, token: String
 }

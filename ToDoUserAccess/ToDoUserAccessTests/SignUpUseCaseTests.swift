@@ -15,28 +15,42 @@ class SignUpUseCaseTests: XCTestCase {
         XCTAssertTrue(client.requests.isEmpty)
     }
     
-    func test_signUp_requestsDataFromURL() {
-        let urlRequest = testRequest()
-        
+    func test_perform_requestsDataFromURL() {
         //system under control
         let (sut, client) = makeSUT()
+        
+        let urlRequest = testRequest()
+        
         //system under control does something
         sut.perform(urlRequest: urlRequest) { _ in }
         //Then we check what we want
         XCTAssertEqual(client.requests, [urlRequest])
     }
     
-    func test_signUpTwice_requestsDataFromURLTwice() {
+    func test_performTwice_requestsDataFromURLOnlyOnceBeforeClientCompletes() {
+        let (sut, client) = makeSUT()
         let urlRequest = testRequest()
         
-        let (sut, client) = makeSUT()
         sut.perform(urlRequest: urlRequest) { _ in }
         sut.perform(urlRequest: urlRequest) { _ in }
         
         XCTAssertEqual(client.requests, [urlRequest])
     }
     
-    func test_signUp_deliversErrorOnClientError() {
+    func test_perform_canRequestDataFromURLAfterClientCompletes() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: failure(.connectivity), when: {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
+        })
+        
+        let urlRequest = testRequest()
+        sut.perform(urlRequest: urlRequest) { _ in }
+        XCTAssertEqual(client.requests, [urlRequest, urlRequest])
+    }
+    
+    func test_perform_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.connectivity), when: {
@@ -45,7 +59,7 @@ class SignUpUseCaseTests: XCTestCase {
         })
     }
     
-    func test_signUp_deliversErrorOnNon201HTTPResponse() {
+    func test_perform_deliversErrorOnNon201HTTPResponse() {
         let (sut, client) = makeSUT()
         let samples = [199, 200, 300, 400, 500]
         
@@ -57,7 +71,7 @@ class SignUpUseCaseTests: XCTestCase {
         }
     }
     
-    func test_signUp_deliversErrorOn201HTTPResponseWithInvalidJSON() {
+    func test_perform_deliversErrorOn201HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.invalidData)) {
@@ -66,7 +80,7 @@ class SignUpUseCaseTests: XCTestCase {
         }
     }
     
-    func test_signUp_deliversResponseDataOn201HTTPResponseWithValidJSON() {
+    func test_perform_deliversResponseDataOn201HTTPResponseWithValidJSON() {
         let (sut, client) = makeSUT()
         
         let responseData = makeResponse(email: "email@example.com", token: "CvX9geXFYtLKED2Tre8zKgVT")
@@ -77,7 +91,7 @@ class SignUpUseCaseTests: XCTestCase {
         })
     }
     
-    func test_signUp_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_perform_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         let urlRequest = testRequest()
         var sut: SignupAuthenticationService? = SignupAuthenticationService(client: client)
@@ -142,12 +156,4 @@ class SignUpUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    //MARK: - Helpers
-    private func testRequest() -> URLRequest {
-        let urlRequest = URLRequest(url: anyURL())
-//        urlRequest.httpMethod = "POST"
-//        urlRequest.httpBody = anyData()
-//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        return urlRequest
-    }
 }
