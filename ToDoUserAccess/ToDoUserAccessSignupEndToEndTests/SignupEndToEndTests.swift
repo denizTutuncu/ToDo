@@ -57,7 +57,7 @@ class SignupEndToEndTests: XCTestCase {
     }
     
     //    private struct TestRequest: Requestable {
-    //        var baseURL: URL { URL(string: "https://ancient-plateau-22374.herokuapp.com")! }
+    //        var baseURL: URL { URL(string: EndPointHelper.userEndPoint)! }
     //        var path: String { "/user"}
     //        var httpMethod: HTTPMethod { .POST }
     //        var httpBody: Data? = makeRequestData()
