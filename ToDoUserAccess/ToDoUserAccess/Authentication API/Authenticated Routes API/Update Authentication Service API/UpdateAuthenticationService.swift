@@ -7,9 +7,9 @@
 
 import Foundation
 
-public final class UpdateAuthenticationService: AuthenticationService {
+public final class UpdateAuthenticationService: UpdateAuthService {
     private var urlRequests: [URLRequest]
-    private let client: HTTPClient
+    private let client: AuthenticatedHTTPClient
     
     public enum Error: Swift.Error {
         case connectivity
@@ -19,14 +19,17 @@ public final class UpdateAuthenticationService: AuthenticationService {
         case unexpected
     }
     
-    public typealias Result = AuthenticationService.Result
+    public typealias Result = UpdateAuthService.Result
     
-    public init(client: HTTPClient) {
+    public init(client: AuthenticatedHTTPClient) {
         self.urlRequests = []
         self.client = client
     }
     
-    public func perform(urlRequest: URLRequest, completion: @escaping (Result) -> Void) {
+    public func perform(request: UpdateAuthRequest, completion: @escaping (Result) -> Void) {
+
+        let urlRequest = createRequest(request)
+        
         switch secureURLRequestQueue(urlRequest) {
         case .none:
             break
@@ -42,7 +45,34 @@ public final class UpdateAuthenticationService: AuthenticationService {
                 }
                 self?.clearURLRequestQueue()
             }
-        }        
+        }
+    }
+    
+    private func createRequest(_ updateAuthRequest: UpdateAuthRequest) -> URLRequest {
+        let baseURL = URL(string: "https://ancient-plateau-22374.herokuapp.com")!
+        let finalURL = baseURL.appendingPathComponent("user")
+        var urlRequest =  URLRequest(url: finalURL)
+        
+        urlRequest.httpMethod = "PUT"
+        urlRequest.httpBody = makeRequestHttpBodyData(email: updateAuthRequest.email, password: updateAuthRequest.password)
+        
+        let headers = ["Content-Type":"application/json"]
+        for header in headers {
+            urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
+        }
+                
+        return urlRequest
+    }
+    
+    
+    private func makeRequestHttpBodyData(email: String, password: String) -> Data {
+        let json = [
+            "email": email,
+            "password": password,
+        ].compactMapValues { $0 }
+        
+        let data = ["user" : json]
+        return try! JSONSerialization.data(withJSONObject: data)
     }
     
     private func secureURLRequestQueue(_ urlRequest: URLRequest) -> URLRequest? {
@@ -63,7 +93,7 @@ public final class UpdateAuthenticationService: AuthenticationService {
         do {
             let logInResponseData = try UpdatedAuthResponseMapper
                 .map(data, from: response)
-            return .success(AuthenticationResponse(email: logInResponseData.email))
+            return .success(UpdateAuthResponse(email: logInResponseData.email))
         } catch {
             return .failure(error)
         }

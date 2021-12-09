@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UpdatedAuthResponseMapper {
+final class UpdatedAuthResponseMapper {
     private struct Root: Decodable {
         let data: UpdatedAuthResponse
     }

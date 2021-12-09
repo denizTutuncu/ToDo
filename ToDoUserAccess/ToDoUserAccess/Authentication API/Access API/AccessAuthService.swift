@@ -7,7 +7,8 @@
 
 import Foundation
 
-public final class SignupAuthenticationService: AuthenticationService {    
+public final class AccessAuthService: AccessService {
+    
     private var urlRequests: [URLRequest]
     private let client: HTTPClient
     
@@ -17,14 +18,17 @@ public final class SignupAuthenticationService: AuthenticationService {
         case badResponse
     }
     
-    public typealias Result = AuthenticationService.Result
+    public typealias Result = AccessService.Result
     
     public init(client: HTTPClient) {
         self.urlRequests = []
         self.client = client
     }
     
-    public func perform(urlRequest: URLRequest, completion: @escaping (Result) -> Void) {
+    public func perform(request: AccessRequest, completion: @escaping (Result) -> Void) {
+    
+        let urlRequest = createRequest(request)
+
         switch secureURLRequestQueue(urlRequest) {
         case .none:
             break
@@ -34,7 +38,7 @@ public final class SignupAuthenticationService: AuthenticationService {
                 guard self != nil else { return }
                 switch result {
                 case let .success((data, response)):
-                    completion(SignupAuthenticationService.map(data, from: response))
+                    completion(AccessAuthService.map(data, from: response))
                 case .failure:
                     completion(.failure(Error.connectivity))
                 }
@@ -42,6 +46,32 @@ public final class SignupAuthenticationService: AuthenticationService {
             }
         }
         
+    }
+    
+    private func createRequest(_ signupRequest: AccessRequest) -> URLRequest {
+        let baseURL = URL(string: "https://ancient-plateau-22374.herokuapp.com")!
+        let finalURL = baseURL.appendingPathComponent("user")
+        var urlRequest =  URLRequest(url: finalURL)
+        
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = makeRequestHttpBodyData(email: signupRequest.email, password: signupRequest.password)
+        
+        let headers = ["Content-Type":"application/json"]
+        for header in headers {
+            urlRequest.setValue(header.value, forHTTPHeaderField: header.key)
+        }
+        
+        return urlRequest
+    }
+    
+    private func makeRequestHttpBodyData(email: String, password: String) -> Data {
+        let json = [
+            "email": email,
+            "password": password,
+        ].compactMapValues { $0 }
+        
+        let data = ["user" : json]
+        return try! JSONSerialization.data(withJSONObject: data)
     }
     
     private func secureURLRequestQueue(_ urlRequest: URLRequest) -> URLRequest? {
@@ -60,9 +90,9 @@ public final class SignupAuthenticationService: AuthenticationService {
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
         do {
-            let signUpResponseData = try SignupAuthenticationResponseMapper
+            let signUpResponseData = try AccessAuthResponseMapper
                 .map(data, from: response)
-            return .success(AuthenticationResponse(email: signUpResponseData.email, token: signUpResponseData.token))
+            return .success(AccessResponse(email: signUpResponseData.email, token: signUpResponseData.token))
         } catch {
             return .failure(error)
         }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SignupAuthenticationResponse: Decodable {
+struct AccessAuthResponse: Decodable {
     let email, token: String
 }

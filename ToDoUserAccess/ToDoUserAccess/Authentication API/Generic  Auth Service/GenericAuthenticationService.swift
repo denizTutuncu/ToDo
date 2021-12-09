@@ -1,44 +1,55 @@
 //
-//  LoginAuthenticationService.swift
+//  GenericAuthenticationService.swift
 //  ToDoUserAccess
 //
-//  Created by Deniz Tutuncu on 11/10/21.
+//  Created by Deniz Tutuncu on 11/30/21.
 //
 
 import Foundation
 
-public final class LoginAuthenticationService: AuthenticationService {
+public class GenericAuthenticationService<Response> {
     private var urlRequests: [URLRequest]
     private let client: HTTPClient
+    private let mapper: (Data, HTTPURLResponse) throws -> Response
     
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
         case badResponse
+        case unauthorized
+        case unexpected
     }
     
-    public typealias Result = AuthenticationService.Result
+    public typealias Result = Swift.Result<Response,Error>
     
-    public init(client: HTTPClient) {
+    public init(client: HTTPClient, mapper: @escaping (Data, HTTPURLResponse) throws -> Response) {
         self.urlRequests = []
         self.client = client
+        self.mapper = mapper
     }
     
-    public func perform(urlRequest: URLRequest,completion: @escaping (Result) -> Void) {
+    public func perform(request: UpdateAuthRequest, completion: @escaping (Result) -> Void) {
+
+        let urlRequest = URLRequest(url: URL(string: "")!)
+        
         switch secureURLRequestQueue(urlRequest) {
         case .none:
             break
             
         case let .some(urlRequest):
             client.send(urlRequest) { [weak self] result in
-                guard self != nil else { return }
+                guard let self = self else { return }
                 switch result {
                 case let .success((data, response)):
-                    completion(LoginAuthenticationService.map(data, from: response))
+                    do {
+                        completion(.success(try self.mapper(data, response)))
+                    } catch {
+                        completion(.failure(Error.connectivity))
+                    }
                 case .failure:
                     completion(.failure(Error.connectivity))
                 }
-                self?.clearURLRequestQueue()
+                self.clearURLRequestQueue()
             }
         }
     }
@@ -55,16 +66,6 @@ public final class LoginAuthenticationService: AuthenticationService {
     
     private func updateQueueWith(_ urlRequest: URLRequest) {
         urlRequests.append(urlRequest)
-    }
-    
-    private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
-        do {
-            let logInResponseData = try LogInAuthenticationResponseMapper
-                .map(data, from: response)
-            return .success(AuthenticationResponse(token: logInResponseData.token))
-        } catch {
-            return .failure(error)
-        }
     }
     
 }
